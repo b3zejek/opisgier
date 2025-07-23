@@ -3,167 +3,142 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Opisgier.pl - Retro Style</title>
-
+<title>Opisgier.pl - PS2 Retro</title>
 <style>
-  /* Styl retro w klimacie GeoCities */
+  /* Reset */
+  * {
+    margin: 0; padding: 0; box-sizing: border-box;
+  }
+
   body {
-    background: linear-gradient(135deg, #000000, #330066);
+    background: #0a0a0a;
     color: #00ff00;
     font-family: 'Courier New', Courier, monospace;
-    margin: 0;
-    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Lewy górny narożnik - PS2 */
+  #ps2-logo {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #0f0;
+    text-shadow:
+      1px 1px 0 #005500,
+      2px 2px 0 #00aa00;
     user-select: none;
+    z-index: 1000;
   }
 
   header {
-    background: #222;
-    border-bottom: 5px dotted #00ff00;
+    padding: 40px 20px 20px 60px; /* zostaw miejsce na PS2 logo */
     text-align: center;
-    padding: 15px;
-    position: relative;
+    border-bottom: 3px solid #00ff00;
   }
 
   header h1 {
-    font-size: 3em;
-    color: #0f0;
-    text-shadow: 2px 2px 0 #003300;
-    margin: 0.2em 0 0.1em 0;
-  }
-
-  header img {
-    position: absolute;
-    top: 10px;
-    left: 15px;
-    width: 64px;
-    height: 64px;
-    image-rendering: pixelated;
+    font-size: 2.5rem;
+    letter-spacing: 3px;
+    text-shadow: 0 0 8px #00ff00;
   }
 
   nav {
     background: #111;
-    border-top: 3px solid #00ff00;
-    border-bottom: 3px solid #00ff00;
     display: flex;
     justify-content: center;
-    gap: 20px;
-    padding: 10px 0;
+    gap: 25px;
+    padding: 12px 0;
+    border-bottom: 2px solid #00ff00;
   }
 
   nav a {
     color: #00ff00;
-    text-decoration: none;
     font-weight: bold;
-    font-size: 1.2em;
-    padding: 5px 10px;
-    border: 2px solid transparent;
-    transition: all 0.3s ease;
-  }
-
-  nav a:hover {
-    background: #00ff00;
-    color: #000;
-    border: 2px solid #006600;
-    box-shadow: 0 0 10px #00ff00;
+    font-size: 1.1rem;
+    text-decoration: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    user-select: none;
     cursor: pointer;
   }
 
+  nav a:hover, nav a.active {
+    background-color: #00ff00;
+    color: #000;
+    box-shadow: 0 0 12px #00ff00;
+  }
+
   main {
+    flex-grow: 1;
     max-width: 900px;
-    margin: 20px auto;
-    background: #001100;
-    border: 4px double #00ff00;
-    padding: 20px;
-    box-shadow: 0 0 15px #00ff00;
+    margin: 25px auto 40px;
+    padding: 0 20px;
   }
 
   section {
-    margin-bottom: 40px;
+    display: none;
+    animation: fadeIn 0.5s ease forwards;
+  }
+
+  section.active {
+    display: block;
   }
 
   h2 {
-    border-bottom: 3px dotted #00ff00;
-    padding-bottom: 8px;
-    margin-bottom: 15px;
-    font-size: 2em;
+    font-size: 2rem;
+    margin-bottom: 10px;
+    text-shadow: 0 0 6px #00ff00;
   }
 
-  p {
-    line-height: 1.6em;
-    font-size: 1.1em;
+  p, ul {
+    font-size: 1.1rem;
+    line-height: 1.6;
+  }
+
+  ul {
+    margin-left: 20px;
+    margin-top: 10px;
   }
 
   footer {
     text-align: center;
     color: #006600;
-    font-size: 0.9em;
-    padding: 10px;
-    border-top: 3px dotted #00ff00;
+    padding: 15px 10px;
+    border-top: 2px solid #00ff00;
+    font-size: 0.9rem;
   }
 
-  /* Prosty efekt migotania tekstu (oldschool neon) */
-  @keyframes neonGlow {
-    0%, 100% {
-      text-shadow:
-        0 0 5px #00ff00,
-        0 0 10px #00ff00,
-        0 0 20px #00ff00,
-        0 0 40px #00ff00;
-    }
-    50% {
-      text-shadow:
-        0 0 10px #00ff00,
-        0 0 20px #00ff00,
-        0 0 30px #00ff00,
-        0 0 50px #00ff00;
-    }
-  }
-
-  header h1 {
-    animation: neonGlow 3s infinite;
-  }
-
-  /* Styl dla kontrolki muzyki */
-  #music-control {
-    position: fixed;
-    bottom: 15px;
-    right: 15px;
-    background: #003300;
-    border: 2px solid #00ff00;
-    padding: 10px 15px;
-    border-radius: 10px;
-    color: #00ff00;
-    font-family: monospace;
-    cursor: pointer;
-    user-select: none;
-    box-shadow: 0 0 10px #00ff00;
-    z-index: 1000;
-  }
-
-  #music-control:hover {
-    background: #00ff00;
-    color: #000;
+  /* Animacja fadeIn */
+  @keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
   }
 </style>
 </head>
 <body>
 
+<div id="ps2-logo">PS2</div>
+
 <header>
-  <img src="https://i.imgur.com/ejlF9sX.gif" alt="Pixel Joystick" />
-  <h1>Opisgier.pl - Retro Style</h1>
+  <h1>Opisgier.pl</h1>
 </header>
 
 <nav>
-  <a href="#gta-sa">GTA San Andreas</a>
-  <a href="#gta-vc">GTA Vice City</a>
-  <a href="#gta-3">GTA 3</a>
-  <a href="#nfsu2">Need for Speed Underground 2</a>
-  <a href="#max-payne">Max Payne</a>
-  <a href="#minecraft">Minecraft</a>
+  <a href="#" class="active" data-target="gta-sa">GTA San Andreas</a>
+  <a href="#" data-target="gta-vc">GTA Vice City</a>
+  <a href="#" data-target="gta-3">GTA 3</a>
+  <a href="#" data-target="nfsu2">Need for Speed Underground 2</a>
+  <a href="#" data-target="max-payne">Max Payne</a>
+  <a href="#" data-target="minecraft">Minecraft</a>
 </nav>
 
 <main>
-  <section id="gta-sa">
+  <section id="gta-sa" class="active">
     <h2>Grand Theft Auto: San Andreas</h2>
     <p><strong>Grand Theft Auto: San Andreas</strong> to gra akcji z otwartym światem, w której gracz wciela się w Carla "CJ" Johnsona, powracającego do Los Santos po pięciu latach nieobecności. Akcja toczy się w 1992 roku, w fikcyjnym stanie San Andreas, wzorowanym na Kalifornii i Nevadzie. Głównym wątkiem fabularnym jest walka CJ-a o odzyskanie kontroli nad miastem i rodziną, a także odkrycie prawdy o śmierci matki.</p>
     <br />
@@ -178,8 +153,6 @@
       <li>Realistyczny świat: Gra odtwarza klimat początku lat 90. z charakterystycznymi elementami kultury i muzyki.</li>
     </ul>
   </section>
-
-  <!-- Podobne sekcje dla pozostałych gier (dla przykładu tylko GTA Vice City) -->
 
   <section id="gta-vc">
     <h2>Grand Theft Auto: Vice City</h2>
@@ -197,27 +170,16 @@
     </ul>
   </section>
 
-  <!-- Możesz dodać sekcje GTA 3, Need for Speed Underground 2, Max Payne, Minecraft analogicznie -->
-
-</main>
-
-<footer>
-  &copy; 2025 Opisgier.pl — Retro stylizacja
-</footer>
-
-<!-- Muzyka 8-bitowa w tle z kontrolą -->
-<audio id="bg-music" loop>
-  <source src="https://freesound.org/data/previews/235/235912_3981476-lq.mp3" type="audio/mpeg" />
-  Twój przeglądarka nie wspiera audio.
-</audio>
-
-<div id="music-control">🔈 Włącz muzykę</div>
-
-<script>
-  const music = document.getElementById('bg-music');
-  const control = document.getElementById('music-control');
-
-  control.addEventListener('click', () => {
-    if (music.paused) {
-      music.play();
-      control.textContent =
+  <section id="gta-3">
+    <h2>Grand Theft Auto 3</h2>
+    <p><strong>Grand Theft Auto 3</strong> to przełomowa gra akcji z otwartym światem, która przenosi gracza do Liberty City, inspirowanego Nowym Jorkiem. Wcielasz się w bezimiennego bohatera, który zostaje wplątany w świat przestępczości i próbuje przetrwać w brutalnym mieście.</p>
+    <br />
+    <p><strong>Fabuła:</strong> Bohater budzi się po zamachu na jego życie i rozpoczyna walkę o przetrwanie oraz zemstę na swoich przeciwnikach, przemierzając niebezpieczne ulice Liberty City.</p>
+    <br />
+    <p><strong>Cechy gry:</strong></p>
+    <ul>
+      <li>Trójwymiarowy otwarty świat: Pierwsza pełna 3D odsłona serii GTA.</li>
+      <li>Intensywna akcja i misje fabularne.</li>
+      <li>Wielość broni i pojazdów.</li>
+      <li>Charakterystyczny mroczny klimat i muzyka.</li>
+      <li>Moż
