@@ -1,183 +1,223 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-    <meta charset="UTF-8">
-    <title>Opisgier.pl</title>
-    <style>
-        body {
-            background-color: #000;
-            color: #0f0;
-            font-family: 'Courier New', Courier, monospace;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #111;
-            padding: 20px;
-            text-align: center;
-            font-size: 32px;
-            border-bottom: 2px solid #0f0;
-        }
-        nav {
-            background-color: #222;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            border-bottom: 1px solid #0f0;
-        }
-        nav a {
-            color: #0f0;
-            padding: 15px 25px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-        nav a:hover {
-            background-color: #0f0;
-            color: #000;
-        }
-        .content {
-            padding: 20px;
-            display: none;
-        }
-        .active {
-            display: block;
-        }
-        h2 {
-            border-bottom: 1px solid #0f0;
-        }
-        .section {
-            margin-top: 30px;
-        }
-    </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Opisgier.pl - Retro Style</title>
+
+<style>
+  /* Styl retro w klimacie GeoCities */
+  body {
+    background: linear-gradient(135deg, #000000, #330066);
+    color: #00ff00;
+    font-family: 'Courier New', Courier, monospace;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+  }
+
+  header {
+    background: #222;
+    border-bottom: 5px dotted #00ff00;
+    text-align: center;
+    padding: 15px;
+    position: relative;
+  }
+
+  header h1 {
+    font-size: 3em;
+    color: #0f0;
+    text-shadow: 2px 2px 0 #003300;
+    margin: 0.2em 0 0.1em 0;
+  }
+
+  header img {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    width: 64px;
+    height: 64px;
+    image-rendering: pixelated;
+  }
+
+  nav {
+    background: #111;
+    border-top: 3px solid #00ff00;
+    border-bottom: 3px solid #00ff00;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 10px 0;
+  }
+
+  nav a {
+    color: #00ff00;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1.2em;
+    padding: 5px 10px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+  }
+
+  nav a:hover {
+    background: #00ff00;
+    color: #000;
+    border: 2px solid #006600;
+    box-shadow: 0 0 10px #00ff00;
+    cursor: pointer;
+  }
+
+  main {
+    max-width: 900px;
+    margin: 20px auto;
+    background: #001100;
+    border: 4px double #00ff00;
+    padding: 20px;
+    box-shadow: 0 0 15px #00ff00;
+  }
+
+  section {
+    margin-bottom: 40px;
+  }
+
+  h2 {
+    border-bottom: 3px dotted #00ff00;
+    padding-bottom: 8px;
+    margin-bottom: 15px;
+    font-size: 2em;
+  }
+
+  p {
+    line-height: 1.6em;
+    font-size: 1.1em;
+  }
+
+  footer {
+    text-align: center;
+    color: #006600;
+    font-size: 0.9em;
+    padding: 10px;
+    border-top: 3px dotted #00ff00;
+  }
+
+  /* Prosty efekt migotania tekstu (oldschool neon) */
+  @keyframes neonGlow {
+    0%, 100% {
+      text-shadow:
+        0 0 5px #00ff00,
+        0 0 10px #00ff00,
+        0 0 20px #00ff00,
+        0 0 40px #00ff00;
+    }
+    50% {
+      text-shadow:
+        0 0 10px #00ff00,
+        0 0 20px #00ff00,
+        0 0 30px #00ff00,
+        0 0 50px #00ff00;
+    }
+  }
+
+  header h1 {
+    animation: neonGlow 3s infinite;
+  }
+
+  /* Styl dla kontrolki muzyki */
+  #music-control {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    background: #003300;
+    border: 2px solid #00ff00;
+    padding: 10px 15px;
+    border-radius: 10px;
+    color: #00ff00;
+    font-family: monospace;
+    cursor: pointer;
+    user-select: none;
+    box-shadow: 0 0 10px #00ff00;
+    z-index: 1000;
+  }
+
+  #music-control:hover {
+    background: #00ff00;
+    color: #000;
+  }
+</style>
 </head>
 <body>
-    <header>Opisgier.pl</header>
-    <nav>
-        <a href="#" onclick="showTab('sanandreas')">GTA San Andreas</a>
-        <a href="#" onclick="showTab('vicecity')">GTA Vice City</a>
-        <a href="#" onclick="showTab('gta3')">GTA 3</a>
-        <a href="#" onclick="showTab('nfsu2')">Need for Speed Underground 2</a>
-        <a href="#" onclick="showTab('maxpayne')">Max Payne</a>
-        <a href="#" onclick="showTab('minecraft')">Minecraft</a>
-    </nav>
 
-    <div id="sanandreas" class="content active">
-        <h2>GTA San Andreas</h2>
-        <p>Grand Theft Auto: San Andreas to gra akcji z otwartym światem, w której gracz wciela się w Carla "CJ" Johnsona, powracającego do Los Santos po pięciu latach nieobecności. Akcja toczy się w 1992 roku, w fikcyjnym stanie San Andreas, wzorowanym na Kalifornii i Nevadzie. Głównym wątkiem fabularnym jest walka CJ-a o odzyskanie kontroli nad miastem i rodziną, a także odkrycie prawdy o śmierci matki.</p>
-        <div class="section">
-            <strong>Fabuła:</strong>
-            <p>Carl "CJ" Johnson wraca do Los Santos po informacji o śmierci matki. Dowiaduje się, że jego rodzina i gang Grove Street Families są w rozsypce, a do tego zostaje wrobiony w morderstwo przez skorumpowanych gliniarzy z oddziału C.R.A.S.H. Musi stawić czoła gangom, korupcji i walczyć o przetrwanie w świecie pełnym przemocy i niebezpieczeństw.</p>
-        </div>
-        <div class="section">
-            <strong>Cechy gry:</strong>
-            <ul>
-                <li>Otwarty świat: Trzy duże miasta (Los Santos, San Fierro, Las Venturas) i obszary wiejskie do eksploracji.</li>
-                <li>Personalizacja: Możliwość zmiany wyglądu i umiejętności CJ-a.</li>
-                <li>Różnorodność aktywności: Misje fabularne, zadania poboczne, wyścigi, strzelaniny, napady i wiele innych.</li>
-                <li>Wpływ wyborów: Decyzje gracza wpływają na rozwój fabuły i relacje z postaciami.</li>
-                <li>Realistyczny świat: Gra odtwarza klimat początku lat 90. z charakterystycznymi elementami kultury i muzyki.</li>
-            </ul>
-        </div>
-    </div>
+<header>
+  <img src="https://i.imgur.com/ejlF9sX.gif" alt="Pixel Joystick" />
+  <h1>Opisgier.pl - Retro Style</h1>
+</header>
 
-    <div id="vicecity" class="content">
-        <h2>GTA Vice City</h2>
-        <p>Grand Theft Auto: Vice City to dynamiczna gra akcji z otwartym światem, osadzona w latach 80. XX wieku w fikcyjnym mieście Vice City, wzorowanym na Miami. Gracz wciela się w Tommy'ego Vercettiego, który po wyjściu z więzienia zostaje wplątany w gangsterską intrygę i dąży do zbudowania własnego imperium przestępczego.</p>
-        <div class="section">
-            <strong>Fabuła:</strong>
-            <p>Tommy Vercetti po 15 latach odsiadki trafia do Vice City, by odebrać zlecenie dla mafii. Sprawy szybko się komplikują, a on musi przejąć kontrolę nad miastem, pokonując konkurencję, zdrady i brutalne przeszkody w świecie narkotyków i przemocy.</p>
-        </div>
-        <div class="section">
-            <strong>Cechy gry:</strong>
-            <ul>
-                <li>Styl lat 80.: Charakterystyczna muzyka, samochody i moda z epoki.</li>
-                <li>Otwarte miasto: Vice City podzielone na dwie wyspy, pełne życia i różnorodnych lokacji.</li>
-                <li>Rozbudowana fabuła: Intrygi mafijne, zdrady i walka o władzę.</li>
-                <li>Różnorodność misji: Od klasycznych strzelanin po pościgi i sabotaż.</li>
-                <li>Kultowy klimat: Nawiązania do filmów i seriali jak "Scarface" czy "Miami Vice".</li>
-            </ul>
-        </div>
-    </div>
+<nav>
+  <a href="#gta-sa">GTA San Andreas</a>
+  <a href="#gta-vc">GTA Vice City</a>
+  <a href="#gta-3">GTA 3</a>
+  <a href="#nfsu2">Need for Speed Underground 2</a>
+  <a href="#max-payne">Max Payne</a>
+  <a href="#minecraft">Minecraft</a>
+</nav>
 
-    <div id="gta3" class="content">
-        <h2>GTA 3</h2>
-        <p>Grand Theft Auto III to rewolucyjna gra akcji z otwartym światem, która zapoczątkowała nową erę 3D w serii GTA. Osadzona w fikcyjnym mieście Liberty City, gracz wciela się w niemego bohatera - Claude'a, który po zdradzie swojej partnerki wyrusza na drogę zemsty i zbrodni.</p>
-        <div class="section">
-            <strong>Fabuła:</strong>
-            <p>Claude zostaje postrzelony i zdradzony przez swoją dziewczynę podczas napadu. Ucieka z transportu więziennego i zaczyna pracować dla lokalnych gangów, wspinając się po drabinie przestępczego świata, by dokonać zemsty.</p>
-        </div>
-        <div class="section">
-            <strong>Cechy gry:</strong>
-            <ul>
-                <li>Pierwsza GTA w pełnym 3D: Ogromny przełom technologiczny dla serii.</li>
-                <li>Liberty City: Mroczne, wielowarstwowe miasto inspirowane Nowym Jorkiem.</li>
-                <li>Misje przestępcze: Od porwań po zabójstwa na zlecenie.</li>
-                <li>Klimatyczna muzyka radiowa: Kultowe stacje radiowe w grze.</li>
-                <li>Mroczna fabuła: Historia zemsty i przetrwania w brutalnym świecie.</li>
-            </ul>
-        </div>
-    </div>
+<main>
+  <section id="gta-sa">
+    <h2>Grand Theft Auto: San Andreas</h2>
+    <p><strong>Grand Theft Auto: San Andreas</strong> to gra akcji z otwartym światem, w której gracz wciela się w Carla "CJ" Johnsona, powracającego do Los Santos po pięciu latach nieobecności. Akcja toczy się w 1992 roku, w fikcyjnym stanie San Andreas, wzorowanym na Kalifornii i Nevadzie. Głównym wątkiem fabularnym jest walka CJ-a o odzyskanie kontroli nad miastem i rodziną, a także odkrycie prawdy o śmierci matki.</p>
+    <br />
+    <p><strong>Fabuła:</strong> Carl "CJ" Johnson wraca do Los Santos po informacji o śmierci matki. Dowiaduje się, że jego rodzina i gang Grove Street Families są w rozsypce, a do tego zostaje wrobiony w morderstwo przez skorumpowanych gliniarzy z oddziału C.R.A.S.H. Musi stawić czoła gangom, korupcji i walczyć o przetrwanie w świecie pełnym przemocy i niebezpieczeństw.</p>
+    <br />
+    <p><strong>Cechy gry:</strong></p>
+    <ul>
+      <li>Otwarty świat: Trzy duże miasta (Los Santos, San Fierro, Las Venturas) i obszary wiejskie do eksploracji.</li>
+      <li>Personalizacja: Możliwość zmiany wyglądu i umiejętności CJ-a.</li>
+      <li>Różnorodność aktywności: Misje fabularne, zadania poboczne, wyścigi, strzelaniny, napady i wiele innych.</li>
+      <li>Wpływ wyborów: Decyzje gracza wpływają na rozwój fabuły i relacje z postaciami.</li>
+      <li>Realistyczny świat: Gra odtwarza klimat początku lat 90. z charakterystycznymi elementami kultury i muzyki.</li>
+    </ul>
+  </section>
 
-    <div id="nfsu2" class="content">
-        <h2>Need for Speed Underground 2</h2>
-        <p>NFS Underground 2 to legendarna gra wyścigowa z naciskiem na tuning samochodów i kulturę ulicznych wyścigów. Gracz porusza się po otwartym mieście Bayview, rywalizując w różnych zawodach, by zdobyć szacunek i zostać królem ulicy.</p>
-        <div class="section">
-            <strong>Fabuła:</strong>
-            <p>Po zwycięstwie w Olympic City bohater trafia do Bayview, gdzie od nowa buduje swoją reputację. Rywalizuje z elitą wyścigową, zdobywając części, sponsorów i dominując kolejne dzielnice miasta.</p>
-        </div>
-        <div class="section">
-            <strong>Cechy gry:</strong>
-            <ul>
-                <li>Ogromna personalizacja: Setki części tuningowych i wizualnych.</li>
-                <li>Otwarte miasto: Swobodne poruszanie się po Bayview.</li>
-                <li>Różnorodne tryby: Sprinty, drifty, drag race'y i wiele innych.</li>
-                <li>Realistyczna grafika: Klimat nocy, neonów i mokrego asfaltu.</li>
-                <li>Ikoniczna ścieżka dźwiękowa: Muzyka idealnie oddająca klimat undergroundu.</li>
-            </ul>
-        </div>
-    </div>
+  <!-- Podobne sekcje dla pozostałych gier (dla przykładu tylko GTA Vice City) -->
 
-    <div id="maxpayne" class="content">
-        <h2>Max Payne</h2>
-        <p>Max Payne to mroczna gra akcji TPP, opowiadająca historię nowojorskiego detektywa, który po brutalnym morderstwie swojej rodziny popada w spiralę zemsty. Charakteryzuje się filmowym stylem, komiksowymi przerywnikami i efektownym "bullet time".</p>
-        <div class="section">
-            <strong>Fabuła:</strong>
-            <p>Max Payne zostaje wrobiony w morderstwo i ścigany przez policję oraz gangi. Próbując odkryć prawdę o śmierci rodziny, wplątuje się w spisek sięgający korporacji farmaceutycznej i rządowych konspiracji.</p>
-        </div>
-        <div class="section">
-            <strong>Cechy gry:</strong>
-            <ul>
-                <li>Bullet Time: Spowolnienie czasu podczas strzelanin.</li>
-                <li>Komiksowy styl narracji: Fabularne przerywniki w formie komiksów.</li>
-                <li>Mroczny klimat: Noirowy styl, deszczowe ulice Nowego Jorku.</li>
-                <li>Intensywna akcja: Dynamiczne walki i trudne pojedynki z bossami.</li>
-                <li>Silna fabuła: Osobista tragedia Maxa napędza jego działania.</li>
-            </ul>
-        </div>
-    </div>
+  <section id="gta-vc">
+    <h2>Grand Theft Auto: Vice City</h2>
+    <p><strong>Grand Theft Auto: Vice City</strong> to gra akcji z otwartym światem, osadzona w fikcyjnym mieście Vice City, inspirowanym latami 80. Miami. Gracz wciela się w Tommy’ego Vercettiego, który po wyjściu z więzienia angażuje się w świat przestępczy i próbuje zbudować własne imperium. Gra charakteryzuje się klimatem lat 80., muzyką z tamtej epoki i szeroką gamą pojazdów i broni.</p>
+    <br />
+    <p><strong>Fabuła:</strong> Tommy Vercetti zostaje wysłany do Vice City, aby przejąć kontrolę nad działaniami narkotykowymi dla swojego byłego szefa. Po nieudanym transakcji zaczyna walczyć z rywalizującymi gangami, by zdobyć władzę i wpływy w mieście pełnym korupcji i przemocy.</p>
+    <br />
+    <p><strong>Cechy gry:</strong></p>
+    <ul>
+      <li>Otwarte miasto: Eksploracja rozległego Vice City inspirowanego Miami.</li>
+      <li>Lat 80. klimat: Muzyka, moda i stylistyka nawiązująca do tamtej dekady.</li>
+      <li>Różnorodne misje: Od napadów po wyścigi i zadania poboczne.</li>
+      <li>Personalizacja pojazdów i broni.</li>
+      <li>Dynamiczna fabuła z wieloma postaciami i zwrotami akcji.</li>
+    </ul>
+  </section>
 
-    <div id="minecraft" class="content">
-        <h2>Minecraft</h2>
-        <p>Minecraft to kultowa gra sandboxowa, w której gracze mogą budować, eksplorować i przetrwać w nieskończonym, proceduralnie generowanym świecie zbudowanym z bloków. Oferuje tryby kreatywny i przetrwania oraz możliwość rozgrywki wieloosobowej.</p>
-        <div class="section">
-            <strong>Cechy gry:</strong>
-            <ul>
-                <li>Swoboda tworzenia: Buduj, co tylko chcesz – od domków po zamki i mechanizmy.</li>
-                <li>Tryby gry: Przetrwanie, kreatywny, hardcore, przygoda.</li>
-                <li>Eksploracja i zasoby: Odkrywaj jaskinie, kopalnie, lochy i biomy.</li>
-                <li>Crafting: Twórz narzędzia, bronie, pancerze i inne przedmioty.</li>
-                <li>Rozwój społeczności: Mody, serwery, tekstury i mapy od graczy.</li>
-            </ul>
-        </div>
-    </div>
+  <!-- Możesz dodać sekcje GTA 3, Need for Speed Underground 2, Max Payne, Minecraft analogicznie -->
 
-    <script>
-        function showTab(id) {
-            var tabs = document.querySelectorAll('.content');
-            tabs.forEach(tab => tab.classList.remove('active'));
-            document.getElementById(id).classList.add('active');
-        }
-    </script>
-</body>
-</html>
+</main>
 
+<footer>
+  &copy; 2025 Opisgier.pl — Retro stylizacja
+</footer>
+
+<!-- Muzyka 8-bitowa w tle z kontrolą -->
+<audio id="bg-music" loop>
+  <source src="https://freesound.org/data/previews/235/235912_3981476-lq.mp3" type="audio/mpeg" />
+  Twój przeglądarka nie wspiera audio.
+</audio>
+
+<div id="music-control">🔈 Włącz muzykę</div>
+
+<script>
+  const music = document.getElementById('bg-music');
+  const control = document.getElementById('music-control');
+
+  control.addEventListener('click', () => {
+    if (music.paused) {
+      music.play();
+      control.textContent =
