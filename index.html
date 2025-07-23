@@ -182,4 +182,83 @@
       <li>Intensywna akcja i misje fabularne.</li>
       <li>Wielość broni i pojazdów.</li>
       <li>Charakterystyczny mroczny klimat i muzyka.</li>
-      <li>Moż
+      <li>Możliwość swobodnej eksploracji miasta.</li>
+    </ul>
+  </section>
+
+  <section id="nfsu2">
+    <h2>Need for Speed Underground 2</h2>
+    <p><strong>Need for Speed Underground 2</strong> to kultowa gra wyścigowa skupiająca się na tuningu samochodów i nocnych ulicznych wyścigach. Gracz może personalizować auta i brać udział w różnorodnych zawodach w fikcyjnym mieście Bayview.</p>
+    <br />
+    <p><strong>Fabuła:</strong> Gracz rywalizuje w nielegalnych wyścigach ulicznych, zdobywając reputację i awansując w świecie tuningu oraz street racingu.</p>
+    <br />
+    <p><strong>Cechy gry:</strong></p>
+    <ul>
+      <li>Szeroki tuning wizualny i mechaniczny pojazdów.</li>
+      <li>Otwarte miasto do eksploracji.</li>
+      <li>Różnorodne tryby wyścigów: sprint, drift, drag, circuit.</li>
+      <li>Dynamiczny soundtrack i efektowna oprawa graficzna.</li>
+      <li>Tryb kariery z progresją postaci.</li>
+    </ul>
+  </section>
+
+  <section id="max-payne">
+    <h2>Max Payne</h2>
+    <p><strong>Max Payne</strong> to gra akcji z trzecioosobowym widokiem, znana z filmowej narracji i efektu „bullet time”, który pozwala spowolnić czas podczas walki. Gracz wciela się w tytułowego Maxa, detektywa walczącego z przestępcami i próbującego odkryć prawdę o śmierci swojej rodziny.</p>
+    <br />
+    <p><strong>Fabuła:</strong> Max Payne prowadzi samotną wojnę przeciwko mafii i skorumpowanym policjantom, odkrywając coraz głębsze spiski w mrocznych zakamarkach miasta.</p>
+    <br />
+    <p><strong>Cechy gry:</strong></p>
+    <ul>
+      <li>Bullet time: spowolnienie akcji w kluczowych momentach.</li>
+      <li>Filmowa fabuła i atmosfera noir.</li>
+      <li>Szeroki arsenał broni i dynamiczne walki.</li>
+      <li>Eksploracja i rozwiązywanie zagadek.</li>
+      <li>Intensywne, mroczne klimaty.</li>
+    </ul>
+  </section>
+
+  <section id="minecraft">
+    <h2>Minecraft</h2>
+    <p><strong>Minecraft</strong> to sandboxowa gra, w której gracze mogą budować i eksplorować światy z bloków. Oferuje nieskończone możliwości kreatywności i przetrwania w procedurally generowanym świecie.</p>
+    <br />
+    <p><strong>Fabuła:</strong> Gracz zaczyna w nieznanym świecie i musi przetrwać, budować schronienia, walczyć z potworami i eksplorować jaskinie oraz krainy.</p>
+    <br />
+    <p><strong>Cechy gry:</strong></p>
+    <ul>
+      <li>Nieskończony, proceduralnie generowany świat.</li>
+      <li>Tryb kreatywny i przetrwania.</li>
+      <li>Budowanie dowolnych konstrukcji z bloków.</li>
+      <li>Multiplayer i modyfikacje.</li>
+      <li>Prosta, pikselowa grafika w stylu retro.</li>
+    </ul>
+  </section>
+</main>
+
+<footer>
+  &copy; 2025 Opisgier.pl — Retro Gaming Fanpage
+</footer>
+
+<script>
+  // Przełączanie sekcji i aktywne menu
+  const links = document.querySelectorAll('nav a');
+  const sections = document.querySelectorAll('main section');
+
+  links.forEach(link => {
+    link.addEventListener('click', e => {
+      e.preventDefault();
+      const target = link.getAttribute('data-target');
+
+      // Usuwamy active ze wszystkich linków i sekcji
+      links.forEach(l => l.classList.remove('active'));
+      sections.forEach(s => s.classList.remove('active'));
+
+      // Dodajemy active do klikniętej zakładki i sekcji
+      link.classList.add('active');
+      document.getElementById(target).classList.add('active');
+    });
+  });
+</script>
+
+</body>
+</html>
