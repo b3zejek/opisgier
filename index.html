@@ -1,79 +1,66 @@
-# Tworzymy plik HTML z treścią strony RetroReplay.pl w retro stylu (zielony tekst, czarne tło)
-retro_replay_html = """
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8">
-  <title>RetroReplay.pl</title>
-  <style>
-    body {
-      background-color: black;
-      color: #00ff00;
-      font-family: monospace;
-      margin: 0;
-      padding: 0;
-    }
-    header {
-      background-color: #003300;
-      padding: 20px;
-      font-size: 28px;
-      text-align: center;
-      color: #00ff00;
-      border-bottom: 2px solid #00ff00;
-    }
-    nav {
-      background-color: #001a00;
-      padding: 10px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      border-bottom: 1px solid #00ff00;
-    }
-    nav a {
-      color: #00ff00;
-      text-decoration: none;
-      margin: 5px 10px;
-      padding: 5px 10px;
-      border: 1px solid #00ff00;
-    }
-    nav a:hover, nav a.active {
-      background-color: #00ff00;
-      color: black;
-    }
-    section {
-      display: none;
-      padding: 20px;
-    }
-    section.active {
-      display: block;
-    }
-    footer {
-      text-align: center;
-      padding: 10px;
-      background-color: #001a00;
-      color: #00ff00;
-      font-size: 14px;
-    }
-    button {
-      margin-top: 10px;
-      background: #00ff00;
-      color: black;
-      border: none;
-      padding: 8px 12px;
-      font-family: monospace;
-      cursor: pointer;
-    }
-    button:hover {
-      background: lime;
-    }
-  </style>
+<meta charset="UTF-8" />
+<title>RetroReplay.pl</title>
+<style>
+  body {
+    background-color: black;
+    color: #00ff00;
+    font-family: monospace;
+    margin: 0;
+    padding: 0;
+  }
+  header {
+    background-color: #003300;
+    padding: 20px;
+    font-size: 28px;
+    text-align: center;
+    color: #00ff00;
+    border-bottom: 2px solid #00ff00;
+  }
+  nav {
+    background-color: #001a00;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-bottom: 1px solid #00ff00;
+  }
+  nav a {
+    color: #00ff00;
+    text-decoration: none;
+    margin: 5px 10px;
+    padding: 5px 10px;
+    border: 1px solid #00ff00;
+    cursor: pointer;
+  }
+  nav a:hover, nav a.active {
+    background-color: #00ff00;
+    color: black;
+  }
+  section {
+    display: none;
+    padding: 20px;
+  }
+  section.active {
+    display: block;
+  }
+  footer {
+    text-align: center;
+    padding: 10px;
+    background-color: #001a00;
+    color: #00ff00;
+    font-size: 14px;
+  }
+</style>
 </head>
 <body>
 
 <header>🎮 RetroReplay.pl — Gry z PS2 i nie tylko 🎮</header>
 
 <nav>
-  <a data-target="gta-sa">GTA San Andreas</a>
+  <a data-target="gta-sa" class="active">GTA San Andreas</a>
   <a data-target="gta-vc">GTA Vice City</a>
   <a data-target="gta-3">GTA 3</a>
   <a data-target="nfs-u2">NFS Underground 2</a>
@@ -101,61 +88,137 @@ retro_replay_html = """
     </ul>
   </section>
 
-  <!-- Reszta gier (skrócone opisy dla przykładu) -->
-  <section id="gta-vc"><h2>GTA Vice City</h2><p>Akcja dzieje się w latach 80. w słonecznym Vice City. Gracz wciela się w Tommy'ego Vercetti...</p></section>
-  <section id="gta-3"><h2>GTA 3</h2><p>Osadzona w mrocznym Liberty City, gracz wciela się w milczącego Claude’a, który szuka zemsty...</p></section>
-  <section id="nfs-u2"><h2>Need for Speed: Underground 2</h2><p>Wyścigi uliczne, tuning aut i otwarty świat Bayview...</p></section>
-  <section id="max-payne"><h2>Max Payne</h2><p>Noir, zemsta i bullet time. Max szuka sprawiedliwości w brutalnym świecie...</p></section>
-  <section id="minecraft"><h2>Minecraft</h2><p>Buduj, przetrwaj i eksploruj nieskończony świat złożony z bloków...</p></section>
-  <section id="sh2"><h2>Silent Hill 2</h2><p>Psychologiczny horror, tajemnica i groza w mglistym miasteczku...</p></section>
-  <section id="tony-hawk"><h2>Tony Hawk's Pro Skater 2</h2><p>Legendarny skateboarding, triki i punkowa muzyka...</p></section>
-  <section id="castlevania"><h2>Castlevania: Symphony of the Night</h2><p>Platformówka z elementami RPG, gotycki klimat i eksploracja zamku...</p></section>
-  <section id="re4"><h2>Resident Evil 4</h2><p>Leon S. Kennedy ratuje córkę prezydenta i walczy z przerażającymi stworami w Hiszpanii...</p></section>
+  <section id="gta-vc">
+    <h2>GTA Vice City</h2>
+    <p>Akcja dzieje się w latach 80. w słonecznym Vice City. Gracz wciela się w Tommy'ego Vercetti, który powraca do świata przestępczego, by odzyskać utracony majątek i władzę nad miastem.</p>
+    <h3>Fabuła</h3>
+    <p>Tommy Vercetti wychodzi z więzienia i zostaje wplątany w walkę o kontrolę nad Vice City. Musi pokonać rywali i skorumpowanych policjantów, by odzyskać swoje miejsce w przestępczym świecie.</p>
+    <h3>Cechy gry</h3>
+    <ul>
+      <li>Klimat lat 80., neonowe światła i muzyka.</li>
+      <li>Otwarte miasto pełne akcji i misji.</li>
+      <li>Możliwość prowadzenia pojazdów i walki z gangami.</li>
+      <li>Różnorodne bronie i pojazdy.</li>
+      <li>Fabuła pełna zwrotów akcji i humoru.</li>
+    </ul>
+  </section>
+
+  <section id="gta-3">
+    <h2>GTA 3</h2>
+    <p>Osadzona w mrocznym Liberty City, gracz wciela się w milczącego Claude’a, który szuka zemsty po zdradzie i próbie zamachu na jego życie.</p>
+    <h3>Fabuła</h3>
+    <p>Claude zostaje zdradzony podczas napadu i musi przeżyć, by pomścić się na swoich zdrajcach, w brutalnym i niebezpiecznym świecie przestępczym Liberty City.</p>
+    <h3>Cechy gry</h3>
+    <ul>
+      <li>Trójwymiarowe otwarte miasto.</li>
+      <li>Misje fabularne i poboczne.</li>
+      <li>Walka z gangami i policją.</li>
+      <li>Różnorodność pojazdów i broni.</li>
+      <li>Klimat początku 2000.</li>
+    </ul>
+  </section>
+
+  <section id="nfs-u2">
+    <h2>Need for Speed: Underground 2</h2>
+    <p>Wyścigi uliczne, tuning aut i otwarty świat Bayview. Gracz rywalizuje w podziemnych wyścigach, zdobywając sławę i pieniądze.</p>
+    <h3>Fabuła</h3>
+    <p>Gracz zaczyna karierę w wyścigach ulicznych i zdobywa reputację, rywalizując z najlepszymi kierowcami w mieście.</p>
+    <h3>Cechy gry</h3>
+    <ul>
+      <li>Otwarte miasto do eksploracji.</li>
+      <li>Ogromny tuning samochodów.</li>
+      <li>Różne tryby wyścigów.</li>
+      <li>Muzyka w klimacie street racing.</li>
+      <li>Dynamiczna rozgrywka.</li>
+    </ul>
+  </section>
+
+  <section id="max-payne">
+    <h2>Max Payne</h2>
+    <p>Noir, zemsta i bullet time. Max Payne szuka sprawiedliwości po zabójstwie rodziny.</p>
+    <h3>Fabuła</h3>
+    <p>Max Payne to były detektyw, który prowadzi prywatne śledztwo i walczy z przestępcami w brutalnym świecie pełnym korupcji i narkotyków.</p>
+    <h3>Cechy gry</h3>
+    <ul>
+      <li>Efekt bullet time (spowolnienie czasu).</li>
+      <li>Atmosfera noir i mroczna fabuła.</li>
+      <li>Strzelaniny i pościgi.</li>
+      <li>Wciągająca historia i postacie.</li>
+      <li>Stylizowana grafika komiksowa.</li>
+    </ul>
+  </section>
+
+  <section id="minecraft">
+    <h2>Minecraft</h2>
+    <p>Buduj, przetrwaj i eksploruj nieskończony świat złożony z bloków. Kreatywność i przygoda w jednym.</p>
+    <h3>Opis</h3>
+    <p>Gra sandbox, w której możesz tworzyć niemal wszystko, walczyć z potworami i współpracować z innymi graczami.</p>
+  </section>
+
+  <section id="sh2">
+    <h2>Silent Hill 2</h2>
+    <p>Psychologiczny horror, tajemnica i groza w mglistym miasteczku.</p>
+    <h3>Fabuła</h3>
+    <p>James Sunderland szuka swojej zmarłej żony w mrocznym i przerażającym Silent Hill.</p>
+    <h3>Cechy gry</h3>
+    <ul>
+      <li>Niesamowity klimat i muzyka.</li>
+      <li>Elementy psychologicznego horroru.</li>
+      <li>Zagadki i eksploracja.</li>
+      <li>Atmosfera napięcia i tajemnicy.</li>
+      <li>Jedna z najlepszych gier survival horror.</li>
+    </ul>
+  </section>
+
+  <section id="tony-hawk">
+    <h2>Tony Hawk's Pro Skater 2</h2>
+    <p>Legendarny skateboarding, triki i punkowa muzyka.</p>
+    <h3>Opis</h3>
+    <p>Gracz wykonuje niesamowite triki na deskorolce w różnych skateparkach.</p>
+  </section>
+
+  <section id="castlevania">
+    <h2>Castlevania: Symphony of the Night</h2>
+    <p>Platformówka z elementami RPG, gotycki klimat i eksploracja zamku Draculi.</p>
+    <h3>Opis</h3>
+    <p>Gracz jako Alucard przemierza ogromny zamek, walcząc z potworami i rozwijając umiejętności.</p>
+  </section>
+
+  <section id="re4">
+    <h2>Resident Evil 4</h2>
+    <p>Leon S. Kennedy ratuje córkę prezydenta przed tajemniczymi zombi i sektą.</p>
+    <h3>Fabuła</h3>
+    <p>Leon zostaje wysłany na misję ratunkową, która szybko zamienia się w walkę o życie z hordami potworów i sekretnymi organizacjami.</p>
+    <h3>Cechy gry</h3>
+    <ul>
+      <li>Intensywna akcja i strzelaniny.</li>
+      <li>Atmosfera horroru i napięcia.</li>
+      <li>Innowacyjny system celowania.</li>
+      <li>Eksploracja i rozwiązywanie zagadek.</li>
+      <li>Jedna z najlepszych gier survival horror.</li>
+    </ul>
+  </section>
 </main>
 
-<footer>
-  &copy; 2025 RetroReplay.pl — Retro Gaming<br>
-  <button id="music-control">▶ Włącz muzykę</button>
-</footer>
-
-<audio id="bg-music" loop>
-  <source src="https://cdn.pixabay.com/audio/2022/11/03/audio_3ae8474c33.mp3" type="audio/mpeg">
-</audio>
+<footer>© 2025 RetroReplay.pl | Wszystkie prawa zastrzeżone</footer>
 
 <script>
   const links = document.querySelectorAll('nav a');
   const sections = document.querySelectorAll('main section');
-  const music = document.getElementById('bg-music');
-  const musicControl = document.getElementById('music-control');
 
   links.forEach(link => {
     link.addEventListener('click', () => {
-      const target = link.getAttribute('data-target');
+      // usuń active z linków i sekcji
       links.forEach(l => l.classList.remove('active'));
       sections.forEach(s => s.classList.remove('active'));
-      document.getElementById(target).classList.add('active');
-      link.classList.add('active');
-    });
-  });
 
-  musicControl.addEventListener('click', () => {
-    if (music.paused) {
-      music.play();
-      musicControl.textContent = '■ Wyłącz muzykę';
-    } else {
-      music.pause();
-      musicControl.textContent = '▶ Włącz muzykę';
-    }
+      // dodaj active do klikniętego linku i odpowiadającej sekcji
+      link.classList.add('active');
+      const target = link.getAttribute('data-target');
+      document.getElementById(target).classList.add('active');
+    });
   });
 </script>
 
 </body>
 </html>
-"""
-
-# Zapisujemy plik HTML do pobrania
-file_path = "/mnt/data/RetroReplay.html"
-with open(file_path, "w", encoding="utf-8") as f:
-    f.write(retro_replay_html)
-
-file_path
