@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <title>Opisgier.pl</title>
+    <style>
+        body {
+            background-color: #000;
+            color: #0f0;
+            font-family: 'Courier New', Courier, monospace;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #111;
+            padding: 20px;
+            text-align: center;
+            font-size: 32px;
+            border-bottom: 2px solid #0f0;
+        }
+        nav {
+            background-color: #222;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            border-bottom: 1px solid #0f0;
+        }
+        nav a {
+            color: #0f0;
+            padding: 15px 25px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        nav a:hover {
+            background-color: #0f0;
+            color: #000;
+        }
+        .content {
+            padding: 20px;
+            display: none;
+        }
+        .active {
+            display: block;
+        }
+        h2 {
+            border-bottom: 1px solid #0f0;
+        }
+        .section {
+            margin-top: 30px;
+        }
+    </style>
+</head>
+<body>
+    <header>Opisgier.pl</header>
+    <nav>
+        <a href="#" onclick="showTab('sanandreas')">GTA San Andreas</a>
+        <a href="#" onclick="showTab('vicecity')">GTA Vice City</a>
+        <a href="#" onclick="showTab('gta3')">GTA 3</a>
+        <a href="#" onclick="showTab('nfsu2')">Need for Speed Underground 2</a>
+        <a href="#" onclick="showTab('maxpayne')">Max Payne</a>
+        <a href="#" onclick="showTab('minecraft')">Minecraft</a>
+    </nav>
+
+    <div id="sanandreas" class="content active">
+        <h2>GTA San Andreas</h2>
+        <p>Grand Theft Auto: San Andreas to gra akcji z otwartym światem, w której gracz wciela się w Carla "CJ" Johnsona, powracającego do Los Santos po pięciu latach nieobecności. Akcja toczy się w 1992 roku, w fikcyjnym stanie San Andreas, wzorowanym na Kalifornii i Nevadzie. Głównym wątkiem fabularnym jest walka CJ-a o odzyskanie kontroli nad miastem i rodziną, a także odkrycie prawdy o śmierci matki.</p>
+        <div class="section">
+            <strong>Fabuła:</strong>
+            <p>Carl "CJ" Johnson wraca do Los Santos po informacji o śmierci matki. Dowiaduje się, że jego rodzina i gang Grove Street Families są w rozsypce, a do tego zostaje wrobiony w morderstwo przez skorumpowanych gliniarzy z oddziału C.R.A.S.H. Musi stawić czoła gangom, korupcji i walczyć o przetrwanie w świecie pełnym przemocy i niebezpieczeństw.</p>
+        </div>
+        <div class="section">
+            <strong>Cechy gry:</strong>
+            <ul>
+                <li>Otwarty świat: Trzy duże miasta (Los Santos, San Fierro, Las Venturas) i obszary wiejskie do eksploracji.</li>
+                <li>Personalizacja: Możliwość zmiany wyglądu i umiejętności CJ-a.</li>
+                <li>Różnorodność aktywności: Misje fabularne, zadania poboczne, wyścigi, strzelaniny, napady i wiele innych.</li>
+                <li>Wpływ wyborów: Decyzje gracza wpływają na rozwój fabuły i relacje z postaciami.</li>
+                <li>Realistyczny świat: Gra odtwarza klimat początku lat 90. z charakterystycznymi elementami kultury i muzyki.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="vicecity" class="content">
+        <h2>GTA Vice City</h2>
+        <p>Grand Theft Auto: Vice City to dynamiczna gra akcji z otwartym światem, osadzona w latach 80. XX wieku w fikcyjnym mieście Vice City, wzorowanym na Miami. Gracz wciela się w Tommy'ego Vercettiego, który po wyjściu z więzienia zostaje wplątany w gangsterską intrygę i dąży do zbudowania własnego imperium przestępczego.</p>
+        <div class="section">
+            <strong>Fabuła:</strong>
+            <p>Tommy Vercetti po 15 latach odsiadki trafia do Vice City, by odebrać zlecenie dla mafii. Sprawy szybko się komplikują, a on musi przejąć kontrolę nad miastem, pokonując konkurencję, zdrady i brutalne przeszkody w świecie narkotyków i przemocy.</p>
+        </div>
+        <div class="section">
+            <strong>Cechy gry:</strong>
+            <ul>
+                <li>Styl lat 80.: Charakterystyczna muzyka, samochody i moda z epoki.</li>
+                <li>Otwarte miasto: Vice City podzielone na dwie wyspy, pełne życia i różnorodnych lokacji.</li>
+                <li>Rozbudowana fabuła: Intrygi mafijne, zdrady i walka o władzę.</li>
+                <li>Różnorodność misji: Od klasycznych strzelanin po pościgi i sabotaż.</li>
+                <li>Kultowy klimat: Nawiązania do filmów i seriali jak "Scarface" czy "Miami Vice".</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="gta3" class="content">
+        <h2>GTA 3</h2>
+        <p>Grand Theft Auto III to rewolucyjna gra akcji z otwartym światem, która zapoczątkowała nową erę 3D w serii GTA. Osadzona w fikcyjnym mieście Liberty City, gracz wciela się w niemego bohatera - Claude'a, który po zdradzie swojej partnerki wyrusza na drogę zemsty i zbrodni.</p>
+        <div class="section">
+            <strong>Fabuła:</strong>
+            <p>Claude zostaje postrzelony i zdradzony przez swoją dziewczynę podczas napadu. Ucieka z transportu więziennego i zaczyna pracować dla lokalnych gangów, wspinając się po drabinie przestępczego świata, by dokonać zemsty.</p>
+        </div>
+        <div class="section">
+            <strong>Cechy gry:</strong>
+            <ul>
+                <li>Pierwsza GTA w pełnym 3D: Ogromny przełom technologiczny dla serii.</li>
+                <li>Liberty City: Mroczne, wielowarstwowe miasto inspirowane Nowym Jorkiem.</li>
+                <li>Misje przestępcze: Od porwań po zabójstwa na zlecenie.</li>
+                <li>Klimatyczna muzyka radiowa: Kultowe stacje radiowe w grze.</li>
+                <li>Mroczna fabuła: Historia zemsty i przetrwania w brutalnym świecie.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="nfsu2" class="content">
+        <h2>Need for Speed Underground 2</h2>
+        <p>NFS Underground 2 to legendarna gra wyścigowa z naciskiem na tuning samochodów i kulturę ulicznych wyścigów. Gracz porusza się po otwartym mieście Bayview, rywalizując w różnych zawodach, by zdobyć szacunek i zostać królem ulicy.</p>
+        <div class="section">
+            <strong>Fabuła:</strong>
+            <p>Po zwycięstwie w Olympic City bohater trafia do Bayview, gdzie od nowa buduje swoją reputację. Rywalizuje z elitą wyścigową, zdobywając części, sponsorów i dominując kolejne dzielnice miasta.</p>
+        </div>
+        <div class="section">
+            <strong>Cechy gry:</strong>
+            <ul>
+                <li>Ogromna personalizacja: Setki części tuningowych i wizualnych.</li>
+                <li>Otwarte miasto: Swobodne poruszanie się po Bayview.</li>
+                <li>Różnorodne tryby: Sprinty, drifty, drag race'y i wiele innych.</li>
+                <li>Realistyczna grafika: Klimat nocy, neonów i mokrego asfaltu.</li>
+                <li>Ikoniczna ścieżka dźwiękowa: Muzyka idealnie oddająca klimat undergroundu.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="maxpayne" class="content">
+        <h2>Max Payne</h2>
+        <p>Max Payne to mroczna gra akcji TPP, opowiadająca historię nowojorskiego detektywa, który po brutalnym morderstwie swojej rodziny popada w spiralę zemsty. Charakteryzuje się filmowym stylem, komiksowymi przerywnikami i efektownym "bullet time".</p>
+        <div class="section">
+            <strong>Fabuła:</strong>
+            <p>Max Payne zostaje wrobiony w morderstwo i ścigany przez policję oraz gangi. Próbując odkryć prawdę o śmierci rodziny, wplątuje się w spisek sięgający korporacji farmaceutycznej i rządowych konspiracji.</p>
+        </div>
+        <div class="section">
+            <strong>Cechy gry:</strong>
+            <ul>
+                <li>Bullet Time: Spowolnienie czasu podczas strzelanin.</li>
+                <li>Komiksowy styl narracji: Fabularne przerywniki w formie komiksów.</li>
+                <li>Mroczny klimat: Noirowy styl, deszczowe ulice Nowego Jorku.</li>
+                <li>Intensywna akcja: Dynamiczne walki i trudne pojedynki z bossami.</li>
+                <li>Silna fabuła: Osobista tragedia Maxa napędza jego działania.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div id="minecraft" class="content">
+        <h2>Minecraft</h2>
+        <p>Minecraft to kultowa gra sandboxowa, w której gracze mogą budować, eksplorować i przetrwać w nieskończonym, proceduralnie generowanym świecie zbudowanym z bloków. Oferuje tryby kreatywny i przetrwania oraz możliwość rozgrywki wieloosobowej.</p>
+        <div class="section">
+            <strong>Cechy gry:</strong>
+            <ul>
+                <li>Swoboda tworzenia: Buduj, co tylko chcesz – od domków po zamki i mechanizmy.</li>
+                <li>Tryby gry: Przetrwanie, kreatywny, hardcore, przygoda.</li>
+                <li>Eksploracja i zasoby: Odkrywaj jaskinie, kopalnie, lochy i biomy.</li>
+                <li>Crafting: Twórz narzędzia, bronie, pancerze i inne przedmioty.</li>
+                <li>Rozwój społeczności: Mody, serwery, tekstury i mapy od graczy.</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function showTab(id) {
+            var tabs = document.querySelectorAll('.content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+        }
+    </script>
+</body>
+</html>
+
