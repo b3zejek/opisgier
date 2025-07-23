@@ -2,486 +2,223 @@
 <html lang="pl">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>RetroReplay.pl</title>
 <style>
   body {
-    font-family: 'Arial', sans-serif;
-    background: #111;
-    color: #eee;
+    background-color: black;
+    color: #00ff00;
+    font-family: monospace;
     margin: 0;
     padding: 0;
   }
   header {
-    background: #222;
-    padding: 15px 20px;
-    display: flex;
-    align-items: center;
-  }
-  #logo {
-    font-weight: bold;
-    font-size: 24px;
-    color: #5e9cff;
-    cursor: default;
-    user-select: none;
+    background-color: #003300;
+    padding: 20px;
+    font-size: 28px;
+    text-align: center;
+    color: #00ff00;
+    border-bottom: 2px solid #00ff00;
   }
   nav {
-    margin-left: 40px;
+    background-color: #001a00;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-bottom: 1px solid #00ff00;
   }
-  nav button {
-    background: #222;
-    border: none;
-    color: #ccc;
-    margin-right: 15px;
-    padding: 8px 15px;
-    font-size: 16px;
+  nav a {
+    color: #00ff00;
+    text-decoration: none;
+    margin: 5px 10px;
+    padding: 5px 10px;
+    border: 1px solid #00ff00;
     cursor: pointer;
-    border-radius: 4px;
-    transition: background 0.3s, color 0.3s;
   }
-  nav button:hover, nav button.active {
-    background: #5e9cff;
-    color: white;
+  nav a:hover, nav a.active {
+    background-color: #00ff00;
+    color: black;
   }
-  main {
-    padding: 20px 30px;
-    max-width: 900px;
-    margin: auto;
-  }
-  .content {
+  section {
     display: none;
+    padding: 20px;
   }
-  .content.active {
+  section.active {
     display: block;
   }
-  h2 {
-    color: #5e9cff;
-    margin-top: 0;
-  }
-  .section-block {
-    background: #222;
-    padding: 15px;
-    margin-top: 30px;
-    border-radius: 6px;
-  }
-  .section-block h3 {
-    margin-top: 0;
-    color: #9ecbff;
-  }
-  .gallery {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    justify-content: start;
-  }
-  .gallery img {
-    width: 150px;
-    border-radius: 5px;
-    box-shadow: 0 0 5px #000;
-    cursor: pointer;
-    transition: transform 0.2s;
-  }
-  .gallery img:hover {
-    transform: scale(1.1);
-  }
-  .comments {
-    margin-top: 20px;
-  }
-  .comments textarea {
-    width: 100%;
-    min-height: 80px;
-    border-radius: 4px;
-    border: none;
+  footer {
+    text-align: center;
     padding: 10px;
+    background-color: #001a00;
+    color: #00ff00;
     font-size: 14px;
-    resize: vertical;
-  }
-  .comments button {
-    margin-top: 8px;
-    background: #5e9cff;
-    color: white;
-    border: none;
-    padding: 8px 15px;
-    cursor: pointer;
-    border-radius: 4px;
-  }
-  .comments-list {
-    margin-top: 15px;
-    max-height: 200px;
-    overflow-y: auto;
-  }
-  .comment {
-    background: #333;
-    margin-bottom: 8px;
-    padding: 8px 10px;
-    border-radius: 4px;
   }
 </style>
 </head>
 <body>
 
-<header>
-  <div id="logo">RetroReplay.pl - gry z PS2 i nie tylko</div>
-  <nav>
-    <button class="tab-btn active" data-target="gta-sa">GTA San Andreas</button>
-    <button class="tab-btn" data-target="gta-vc">GTA Vice City</button>
-    <button class="tab-btn" data-target="gta-3">GTA 3</button>
-    <button class="tab-btn" data-target="nfs-u2">Need for Speed Underground 2</button>
-    <button class="tab-btn" data-target="max-payne">Max Payne</button>
-    <button class="tab-btn" data-target="minecraft">Minecraft</button>
-  </nav>
-</header>
+<header>🎮 RetroReplay.pl — Gry z PS2 i nie tylko 🎮</header>
+
+<nav>
+  <a data-target="gta-sa" class="active">GTA San Andreas</a>
+  <a data-target="gta-vc">GTA Vice City</a>
+  <a data-target="gta-3">GTA 3</a>
+  <a data-target="nfs-u2">NFS Underground 2</a>
+  <a data-target="max-payne">Max Payne</a>
+  <a data-target="minecraft">Minecraft</a>
+  <a data-target="sh2">Silent Hill 2</a>
+  <a data-target="tony-hawk">Tony Hawk 2</a>
+  <a data-target="castlevania">Castlevania</a>
+  <a data-target="re4">Resident Evil 4</a>
+</nav>
 
 <main>
-  <!-- GTA San Andreas -->
-  <section id="gta-sa" class="content active">
-    <h2>Grand Theft Auto: San Andreas</h2>
+  <section id="gta-sa" class="active">
+    <h2>GTA San Andreas</h2>
     <p>Grand Theft Auto: San Andreas to gra akcji z otwartym światem, w której gracz wciela się w Carla "CJ" Johnsona, powracającego do Los Santos po pięciu latach nieobecności. Akcja toczy się w 1992 roku, w fikcyjnym stanie San Andreas, wzorowanym na Kalifornii i Nevadzie. Głównym wątkiem fabularnym jest walka CJ-a o odzyskanie kontroli nad miastem i rodziną, a także odkrycie prawdy o śmierci matki.</p>
-    <p><strong>Fabuła:</strong> Carl "CJ" Johnson wraca do Los Santos po informacji o śmierci matki. Dowiaduje się, że jego rodzina i gang Grove Street Families są w rozsypce, a do tego zostaje wrobiony w morderstwo przez skorumpowanych gliniarzy z oddziału C.R.A.S.H. Musi stawić czoła gangom, korupcji i walczyć o przetrwanie w świecie pełnym przemocy i niebezpieczeństw.</p>
-    <p><strong>Cechy gry:</strong></p>
+    <h3>Fabuła</h3>
+    <p>Carl "CJ" Johnson wraca do Los Santos po informacji o śmierci matki. Dowiaduje się, że jego rodzina i gang Grove Street Families są w rozsypce, a do tego zostaje wrobiony w morderstwo przez skorumpowanych gliniarzy z oddziału C.R.A.S.H. Musi stawić czoła gangom, korupcji i walczyć o przetrwanie w świecie pełnym przemocy i niebezpieczeństw.</p>
+    <h3>Cechy gry</h3>
     <ul>
-      <li>Otwarty świat: Trzy duże miasta (Los Santos, San Fierro, Las Venturas) i obszary wiejskie do eksploracji.</li>
-      <li>Personalizacja: Możliwość zmiany wyglądu i umiejętności CJ-a.</li>
-      <li>Różnorodność aktywności: Misje fabularne, zadania poboczne, wyścigi, strzelaniny, napady i wiele innych.</li>
-      <li>Wpływ wyborów: Decyzje gracza wpływają na rozwój fabuły i relacje z postaciami.</li>
-      <li>Realistyczny świat: Gra odtwarza klimat początku lat 90. z charakterystycznymi elementami kultury i muzyki.</li>
+      <li>Otwarty świat: Trzy duże miasta i tereny wiejskie.</li>
+      <li>Personalizacja CJ-a.</li>
+      <li>Misje, wyścigi, napady i wiele innych aktywności.</li>
+      <li>Decyzje wpływają na fabułę.</li>
+      <li>Klimat lat 90., muzyka i styl.</li>
     </ul>
-    <div class="section-block">
-      <h3>Poradniki i ciekawostki</h3>
-      <ul>
-        <li>W misji "Wrong Side of the Tracks" najlepiej strzelać z samochodu, by szybciej pokonać przeciwników.</li>
-        <li>Easter Egg: w górach można znaleźć statuetkę Bigfoota.</li>
-        <li>Dzięki zmianie diety i ćwiczeniom CJ może zwiększyć swoją siłę i wytrzymałość.</li>
-      </ul>
-    </div>
-    <div class="section-block">
-      <h3>Mini galeria</h3>
-      <div class="gallery">
-        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/12120/capsule_616x353.jpg" alt="GTA San Andreas 1" />
-        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/12120/ss_1e7f1c58d72a7324c38e7de9af30a7f84c367cae.600x338.jpg" alt="GTA San Andreas 2" />
-        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/12120/ss_92e647b11e5536662088a3df3e1693f7b3714220.600x338.jpg" alt="GTA San Andreas 3" />
-      </div>
-    </div>
-    <div class="section-block comments">
-      <h3>Komentarze</h3>
-      <textarea id="comment-input-sa" placeholder="Dodaj komentarz..."></textarea>
-      <button onclick="addComment('sa')">Dodaj komentarz</button>
-      <div class="comments-list" id="comments-list-sa"></div>
-    </div>
   </section>
 
-  <!-- GTA Vice City -->
-  <section id="gta-vc" class="content">
-    <h2>Grand Theft Auto: Vice City</h2>
-    <p>Grand Theft Auto: Vice City to gra akcji osadzona w klimacie lat 80., gdzie gracz wciela się w Tommy'ego Vercettiego, gangsterka starającego się przejąć kontrolę nad miastem Vice City, wzorowanym na Miami. Gra oferuje otwarty świat pełen misji, wyścigów i zadań pobocznych.</p>
-    <p><strong>Fabuła:</strong> Tommy Vercetti wraca do Vice City po wyjściu z więzienia, aby odzyskać swoje miejsce w świecie przestępczym, mierząc się z rywalizującymi gangami i skorumpowanymi politykami.</p>
-    <p><strong>Cechy gry:</strong></p>
+  <section id="gta-vc">
+    <h2>GTA Vice City</h2>
+    <p>Akcja dzieje się w latach 80. w słonecznym Vice City. Gracz wciela się w Tommy'ego Vercetti, który powraca do świata przestępczego, by odzyskać utracony majątek i władzę nad miastem.</p>
+    <h3>Fabuła</h3>
+    <p>Tommy Vercetti wychodzi z więzienia i zostaje wplątany w walkę o kontrolę nad Vice City. Musi pokonać rywali i skorumpowanych policjantów, by odzyskać swoje miejsce w przestępczym świecie.</p>
+    <h3>Cechy gry</h3>
     <ul>
-      <li>Klimat lat 80.: Stylizowana muzyka, moda i architektura.</li>
-      <li>Otwarte środowisko: Zwiedzanie miasta, wyścigi, misje i sekrety.</li>
-      <li>Różnorodne pojazdy i bronie charakterystyczne dla lat 80.</li>
-      <li>Dynamiczna fabuła i charakterystyczne postacie.</li>
+      <li>Klimat lat 80., neonowe światła i muzyka.</li>
+      <li>Otwarte miasto pełne akcji i misji.</li>
+      <li>Możliwość prowadzenia pojazdów i walki z gangami.</li>
+      <li>Różnorodne bronie i pojazdy.</li>
+      <li>Fabuła pełna zwrotów akcji i humoru.</li>
     </ul>
-    <div class="section-block">
-      <h3>Poradniki i ciekawostki</h3>
-      <ul>
-        <li>W misji "Keep Your Friends Close" ważne jest szybkie uciekanie po zakończeniu akcji.</li>
-        <li>Muzyka z radia jest inspirowana latami 80. i dodaje niesamowitego klimatu.</li>
-        <li>Możesz kupować nieruchomości i rozwijać imperium przestępcze.</li>
-      </ul>
-    </div>
-    <div class="section-block">
-      <h3>Mini galeria</h3>
-      <div class="gallery">
-        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/12130/capsule_616x353.jpg" alt="GTA Vice City 1" />
-        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/12130/ss_1e7f1c58d72a7324c38e7de9af30a7f84c367cae.600x338.jpg" alt="GTA Vice City 2" />
-        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/12130/ss_9b1c45e345b74e61a2dbd073a3bce89bcff8ac9a.600x338.jpg" alt="GTA Vice City 3" />
-      </div>
-    </div>
-    <div class="section-block comments">
-      <h3>Komentarze</h3>
-      <textarea id="comment-input-vc" placeholder="Dodaj komentarz..."></textarea>
-      <button onclick="addComment('vc')">Dodaj komentarz</button>
-      <div class="comments-list" id="comments-list-vc"></div>
-    </div>
   </section>
 
-  <!-- GTA 3 -->
-  <section id="gta-3" class="content">
-    <h2>Grand Theft Auto 3</h2>
-    <p>Grand Theft Auto 3 to przełomowa gra akcji z otwartym światem, która przeniosła serię do trzeciego wymiaru. Gracz wciela się w bezimiennego bohatera, który musi przetrwać i wspiąć się po szczeblach przestępczego świata Liberty City.</p>
-    <p><strong>Fabuła:</strong> Bohater budzi się bez pamięci i zostaje wciągnięty w wir przestępczego życia, gdzie musi walczyć o przetrwanie i władzę w Liberty City, pełnym gangsterów i skorumpowanych służb.</p>
-    <p><strong>Cechy gry:</strong></p>
+  <section id="gta-3">
+    <h2>GTA 3</h2>
+    <p>Osadzona w mrocznym Liberty City, gracz wciela się w milczącego Claude’a, który szuka zemsty po zdradzie i próbie zamachu na jego życie.</p>
+    <h3>Fabuła</h3>
+    <p>Claude zostaje zdradzony podczas napadu i musi przeżyć, by pomścić się na swoich zdrajcach, w brutalnym i niebezpiecznym świecie przestępczym Liberty City.</p>
+    <h3>Cechy gry</h3>
     <ul>
-      <li>Nowatorski świat 3D z pełną swobodą eksploracji.</li>
-      <li>Dynamiczne misje i różnorodne pojazdy.</li>
-      <li>Fabuła pełna zwrotów akcji i mrocznych postaci.</li>
-      <li>Muzyka i klimat ulicznych gangów z Nowego Jorku.</li>
+      <li>Trójwymiarowe otwarte miasto.</li>
+      <li>Misje fabularne i poboczne.</li>
+      <li>Walka z gangami i policją.</li>
+      <li>Różnorodność pojazdów i broni.</li>
+      <li>Klimat początku 2000.</li>
     </ul>
-    <div class="section-block">
-      <h3>Poradniki i ciekawostki</h3>
-      <ul>
-        <li>Warto wykorzystywać mapę do planowania ucieczek.</li>
-        <li>Niektóre misje wymagają sprytnego wykorzystania pojazdów.</li>
-        <li>Ukryte pakiety zwiększają zdrowie i amunicję.</li>
-      </ul>
-    </div>
-    <div class="section-block">
-      <h3>Mini galeria</h3>
-      <div class="gallery">
-        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/12140/capsule_616x353.jpg" alt="GTA 3 1" />
-        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/12140/ss_7c9b3f8a7e3a65a464d4fef9f97b9e3a96a97a0a.600x338.jpg" alt="GTA 3 2" />
-        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/12140/ss_5e5dd68d9a7abce3909ef92ce5be41f8d67d17f9.600x338.jpg" alt="GTA 3 3" />
-      </div>
-    </div>
-    <div class="section-block comments">
-      <h3>Komentarze</h3>
-      <textarea id="comment-input-3" placeholder="Dodaj komentarz..."></textarea>
-      <button onclick="addComment('3')">Dodaj komentarz</button>
-      <div class="comments-list" id="comments-list-3"></div>
-    </div>
   </section>
 
-  <!-- Need for Speed Underground 2 -->
-  <section id="nfs-u2" class="content">
-    <h2>Need for Speed Underground 2</h2>
-    <p>Need for Speed Underground 2 to wyścigi uliczne z ogromnym światem do eksploracji. Gracz bierze udział w nielegalnych wyścigach, tuningując samochody i zdobywając reputację.</p>
-    <p><strong>Fabuła:</strong> Nowy kierowca próbuje zdobyć sławę i władzę na ulicach miasta, rywalizując z najlepszymi i unikając policji.</p>
-    <p><strong>Cechy gry:</strong></p>
+  <section id="nfs-u2">
+    <h2>Need for Speed: Underground 2</h2>
+    <p>Wyścigi uliczne, tuning aut i otwarty świat Bayview. Gracz rywalizuje w podziemnych wyścigach, zdobywając sławę i pieniądze.</p>
+    <h3>Fabuła</h3>
+    <p>Gracz zaczyna karierę w wyścigach ulicznych i zdobywa reputację, rywalizując z najlepszymi kierowcami w mieście.</p>
+    <h3>Cechy gry</h3>
     <ul>
-      <li>Ogromny otwarty świat miasta do zwiedzania.</li>
-      <li>Szeroki tuning samochodów: silnik, wygląd, aerodynamika.</li>
-      <li>Różne tryby wyścigów i wydarzenia.</li>
-      <li>Klimatyczna muzyka i efekty dźwiękowe.</li>
+      <li>Otwarte miasto do eksploracji.</li>
+      <li>Ogromny tuning samochodów.</li>
+      <li>Różne tryby wyścigów.</li>
+      <li>Muzyka w klimacie street racing.</li>
+      <li>Dynamiczna rozgrywka.</li>
     </ul>
-    <div class="section-block">
-      <h3>Poradniki i ciekawostki</h3>
-      <ul>
-        <li>Warto inwestować w tuning pod kątem przyspieszenia i kontroli.</li>
-        <li>Używaj nitro w odpowiednich momentach, by wyprzedzać rywali.</li>
-        <li>Znajdź skróty na mapie, które pomagają wygrać wyścigi.</li>
-      </ul>
-    </div>
-    <div class="section-block">
-      <h3>Mini galeria</h3>
-      <div class="gallery">
-        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/12440/capsule_616x353.jpg" alt="NFS Underground 2 1" />
-        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/12440/ss_3e6f4d2ed6f9d1b5d3c2e472823fcf7f3d394eef.600x338.jpg" alt="NFS Underground 2 2" />
-        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/12440/ss_9b4a1b09b3bdeaf89e7efea3f3f3e393a0efb79a.600x338.jpg" alt="NFS Underground 2 3" />
-      </div>
-    </div>
-    <div class="section-block comments">
-      <h3>Komentarze</h3>
-      <textarea id="comment-input-nfs" placeholder="Dodaj komentarz..."></textarea>
-      <button onclick="addComment('nfs')">Dodaj komentarz</button>
-      <div class="comments-list" id="comments-list-nfs"></div>
-    </div>
   </section>
 
-  <!-- Max Payne -->
-  <section id="max-payne" class="content">
+  <section id="max-payne">
     <h2>Max Payne</h2>
-    <p>Max Payne to gra akcji typu third-person shooter z mroczną, filmową fabułą i słynnym trybem "bullet time". Gracz wciela się w tytułowego Maxa, detektywa szukającego zemsty za śmierć rodziny.</p>
-    <p><strong>Fabuła:</strong> Max Payne próbuje rozwikłać zagadkę morderstwa swojej rodziny, wplątując się w spisek związany z narkotykami i korupcją.</p>
-    <p><strong>Cechy gry:</strong></p>
+    <p>Noir, zemsta i bullet time. Max Payne szuka sprawiedliwości po zabójstwie rodziny.</p>
+    <h3>Fabuła</h3>
+    <p>Max Payne to były detektyw, który prowadzi prywatne śledztwo i walczy z przestępcami w brutalnym świecie pełnym korupcji i narkotyków.</p>
+    <h3>Cechy gry</h3>
     <ul>
-      <li>Bullet time — zwolnione tempo walki.</li>
-      <li>Intensywna, filmowa narracja.</li>
-      <li>Różnorodne bronie i dynamiczne misje.</li>
-      <li>Mroczny, noir klimat.</li>
+      <li>Efekt bullet time (spowolnienie czasu).</li>
+      <li>Atmosfera noir i mroczna fabuła.</li>
+      <li>Strzelaniny i pościgi.</li>
+      <li>Wciągająca historia i postacie.</li>
+      <li>Stylizowana grafika komiksowa.</li>
     </ul>
-    <div class="section-block">
-      <h3>Poradniki i ciekawostki</h3>
-      <ul>
-        <li>Wykorzystuj bullet time, aby celniej trafiać przeciwników.</li>
-        <li>Ukryte obrazy i grafiki pojawiają się podczas cutscenek.</li>
-        <li>W grze jest wiele sekretów i easter eggów.</li>
-      </ul>
-    </div>
-    <div class="section-block">
-      <h3>Mini galeria</h3>
-      <div class="gallery">
-        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/12190/capsule_616x353.jpg" alt="Max Payne 1" />
-        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/12190/ss_7e4a39cbbd0e4f9f8927ff7f92a8b8cc9f0bdf55.600x338.jpg" alt="Max Payne 2" />
-        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/12190/ss_4c2d36e2d4bda7dcd2f70a48e312b743a06a4421.600x338.jpg" alt="Max Payne 3" />
-      </div>
-    </div>
-    <div class="section-block comments">
-      <h3>Komentarze</h3>
-      <textarea id="comment-input-mp" placeholder="Dodaj komentarz..."></textarea>
-      <button onclick="addComment('mp')">Dodaj komentarz</button>
-      <div class="comments-list" id="comments-list-mp"></div>
-    </div>
   </section>
 
-  <!-- Minecraft -->
-  <section id="minecraft" class="content">
+  <section id="minecraft">
     <h2>Minecraft</h2>
-    <p>Minecraft to gra sandboxowa pozwalająca na tworzenie i eksplorację proceduralnie generowanych światów z klocków. Gracze budują, kopią, tworzą i przetrwają w trybach kreatywnym i survival.</p>
-    <p><strong>Fabuła:</strong> Brak liniowej fabuły, główny cel to przetrwanie, eksploracja i tworzenie w otwartym świecie.</p>
-    <p><strong>Cechy gry:</strong></p>
-    <ul>
-      <li>Proceduralnie generowany, niemal nieskończony świat.</li>
-      <li>Tryby kreatywny i survival.</li>
-      <li>Budowanie i modyfikowanie świata z bloków.</li>
-      <li>Multiplayer i mody.</li>
-    </ul>
-    <div class="section-block">
-      <h3>Poradniki i ciekawostki</h3>
-      <ul>
-        <li>Możesz tworzyć własne mody i tekstury.</li>
-        <li>Eksploruj jaskinie i staraj się przetrwać noc, by uniknąć potworów.</li>
-        <li>Redstone pozwala na tworzenie prostych maszyn i mechanizmów.</li>
-      </ul>
-    </div>
-    <div class="section-block">
-      <h3>Mini galeria</h3>
-      <div class="gallery">
-        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/252490/capsule_616x353.jpg" alt="Minecraft 1" />
-        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/252490/ss_5ac3c748a61f4e2fcbce2f7871d7aa7bc47d9a2c.600x338.jpg" alt="Minecraft 2" />
-        <img src="https://cdn.cloudflare.steamstatic.com/steam/apps/252490/ss_3e5a9a44cc5082615483f6b47d17b4c4276f17ef.600x338.jpg" alt="Minecraft 3" />
-      </div>
-    </div>
-    <div class="section-block comments">
-      <h3>Komentarze</h3>
-      <textarea id="comment-input-mc" placeholder="Dodaj komentarz..."></textarea>
-      <button onclick="addComment('mc')">Dodaj komentarz</button>
-      <div class="comments-list" id="comments-list-mc"></div>
-    </div>
+    <p>Buduj, przetrwaj i eksploruj nieskończony świat złożony z bloków. Kreatywność i przygoda w jednym.</p>
+    <h3>Opis</h3>
+    <p>Gra sandbox, w której możesz tworzyć niemal wszystko, walczyć z potworami i współpracować z innymi graczami.</p>
   </section>
 
+  <section id="sh2">
+    <h2>Silent Hill 2</h2>
+    <p>Psychologiczny horror, tajemnica i groza w mglistym miasteczku.</p>
+    <h3>Fabuła</h3>
+    <p>James Sunderland szuka swojej zmarłej żony w mrocznym i przerażającym Silent Hill.</p>
+    <h3>Cechy gry</h3>
+    <ul>
+      <li>Niesamowity klimat i muzyka.</li>
+      <li>Elementy psychologicznego horroru.</li>
+      <li>Zagadki i eksploracja.</li>
+      <li>Atmosfera napięcia i tajemnicy.</li>
+      <li>Jedna z najlepszych gier survival horror.</li>
+    </ul>
+  </section>
+
+  <section id="tony-hawk">
+    <h2>Tony Hawk's Pro Skater 2</h2>
+    <p>Legendarny skateboarding, triki i punkowa muzyka.</p>
+    <h3>Opis</h3>
+    <p>Gracz wykonuje niesamowite triki na deskorolce w różnych skateparkach.</p>
+  </section>
+
+  <section id="castlevania">
+    <h2>Castlevania: Symphony of the Night</h2>
+    <p>Platformówka z elementami RPG, gotycki klimat i eksploracja zamku Draculi.</p>
+    <h3>Opis</h3>
+    <p>Gracz jako Alucard przemierza ogromny zamek, walcząc z potworami i rozwijając umiejętności.</p>
+  </section>
+
+  <section id="re4">
+    <h2>Resident Evil 4</h2>
+    <p>Leon S. Kennedy ratuje córkę prezydenta przed tajemniczymi zombi i sektą.</p>
+    <h3>Fabuła</h3>
+    <p>Leon zostaje wysłany na misję ratunkową, która szybko zamienia się w walkę o życie z hordami potworów i sekretnymi organizacjami.</p>
+    <h3>Cechy gry</h3>
+    <ul>
+      <li>Intensywna akcja i strzelaniny.</li>
+      <li>Atmosfera horroru i napięcia.</li>
+      <li>Innowacyjny system celowania.</li>
+      <li>Eksploracja i rozwiązywanie zagadek.</li>
+      <li>Jedna z najlepszych gier survival horror.</li>
+    </ul>
+  </section>
 </main>
 
+<footer>© 2025 RetroReplay.pl | Wszystkie prawa zastrzeżone</footer>
+
 <script>
-  // Tabs switching
-  const buttons = document.querySelectorAll('nav button.tab-btn');
-  const contents = document.querySelectorAll('main section.content');
+  const links = document.querySelectorAll('nav a');
+  const sections = document.querySelectorAll('main section');
 
-  buttons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      buttons.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
+  links.forEach(link => {
+    link.addEventListener('click', () => {
+      // usuń active z linków i sekcji
+      links.forEach(l => l.classList.remove('active'));
+      sections.forEach(s => s.classList.remove('active'));
 
-      const target = btn.getAttribute('data-target');
-      contents.forEach(section => {
-        if(section.id === target) {
-          section.classList.add('active');
-        } else {
-          section.classList.remove('active');
-        }
-      });
+      // dodaj active do klikniętego linku i odpowiadającej sekcji
+      link.classList.add('active');
+      const target = link.getAttribute('data-target');
+      document.getElementById(target).classList.add('active');
     });
-  });
-
-  // Comments - store in sessionStorage per game (simple, resets on tab close)
-  function addComment(game) {
-    const textarea = document.getElementById('comment-input-' + game);
-    const list = document.getElementById('comments-list-' + game);
-    const comment = textarea.value.trim();
-    if(comment === '') return alert('Wpisz komentarz przed dodaniem.');
-
-    let comments = JSON.parse(sessionStorage.getItem('comments-' + game)) || [];
-    comments.push(comment);
-    sessionStorage.setItem('comments-' + game, JSON.stringify(comments));
-
-    textarea.value = '';
-    renderComments(game);
-  }
-
-  function renderComments(game) {
-    const list = document.getElementById('comments-list-' + game);
-    let comments = JSON.parse(sessionStorage.getItem('comments-' + game)) || [];
-    list.innerHTML = '';
-    comments.forEach(c => {
-      const div = document.createElement('div');
-      div.textContent = c;
-      div.className = 'comment';
-      list.appendChild(div);
-    });
-  }
-
-  // On page load, render comments for all games
-  document.addEventListener('DOMContentLoaded', () => {
-    ['nfs', 'mp', 'mc'].forEach(renderComments);
   });
 </script>
 
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    background: #111;
-    color: #eee;
-  }
-  nav {
-    background: #222;
-    display: flex;
-    padding: 10px;
-  }
-  nav button.tab-btn {
-    background: #333;
-    border: none;
-    color: #eee;
-    padding: 10px 20px;
-    margin-right: 10px;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-  nav button.tab-btn:hover {
-    background: #444;
-  }
-  nav button.tab-btn.active {
-    background: #007acc;
-  }
-  main {
-    padding: 20px;
-  }
-  section.content {
-    display: none;
-  }
-  section.content.active {
-    display: block;
-  }
-  .gallery {
-    display: flex;
-    gap: 10px;
-  }
-  .gallery img {
-    width: 30%;
-    border-radius: 5px;
-  }
-  .section-block {
-    margin-top: 20px;
-  }
-  .comments {
-    margin-top: 30px;
-  }
-  .comments textarea {
-    width: 100%;
-    height: 70px;
-    padding: 10px;
-    border-radius: 5px;
-    border: none;
-    resize: none;
-    font-size: 14px;
-    background: #222;
-    color: #eee;
-  }
-  .comments button {
-    margin-top: 10px;
-    padding: 8px 15px;
-    background: #007acc;
-    border: none;
-    border-radius: 5px;
-    color: #eee;
-    cursor: pointer;
-    font-weight: bold;
-  }
-  .comment {
-    background: #333;
-    padding: 8px 12px;
-    border-radius: 5px;
-    margin-top: 8px;
-  }
-</style>
+</body>
+</html>
