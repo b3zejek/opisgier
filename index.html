@@ -1,76 +1,70 @@
+# Tworzymy plik HTML z treścią strony RetroReplay.pl w retro stylu (zielony tekst, czarne tło)
+retro_replay_html = """
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>RetroReplay.pl</title>
   <style>
     body {
-      background: #000014;
-      color: #0ff;
+      background-color: black;
+      color: #00ff00;
       font-family: monospace;
       margin: 0;
       padding: 0;
     }
     header {
-      background: linear-gradient(90deg, #0f0, #00f);
-      color: #000;
+      background-color: #003300;
       padding: 20px;
-      font-size: 24px;
-      font-weight: bold;
-      text-shadow: 1px 1px #000;
+      font-size: 28px;
+      text-align: center;
+      color: #00ff00;
+      border-bottom: 2px solid #00ff00;
     }
     nav {
-      background: #001122;
+      background-color: #001a00;
       padding: 10px;
       display: flex;
       flex-wrap: wrap;
+      justify-content: center;
+      border-bottom: 1px solid #00ff00;
     }
     nav a {
-      color: #0ff;
+      color: #00ff00;
       text-decoration: none;
-      margin-right: 15px;
-      padding: 6px 10px;
-      border: 1px solid #0ff;
-      border-radius: 4px;
-      transition: background 0.2s;
+      margin: 5px 10px;
+      padding: 5px 10px;
+      border: 1px solid #00ff00;
     }
-    nav a:hover {
-      background: #0ff;
-      color: #000;
-    }
-    nav a.active {
-      background: #0f0;
-      color: #000;
-    }
-    main {
-      padding: 20px;
+    nav a:hover, nav a.active {
+      background-color: #00ff00;
+      color: black;
     }
     section {
       display: none;
-      opacity: 0;
-      transition: opacity 0.3s ease-in-out;
+      padding: 20px;
     }
     section.active {
       display: block;
-      opacity: 1;
     }
     footer {
       text-align: center;
       padding: 10px;
-      background: #001122;
-      color: #0ff;
+      background-color: #001a00;
+      color: #00ff00;
       font-size: 14px;
     }
     button {
-      background: #0ff;
-      color: #000;
+      margin-top: 10px;
+      background: #00ff00;
+      color: black;
       border: none;
       padding: 8px 12px;
+      font-family: monospace;
       cursor: pointer;
-      margin-top: 10px;
     }
     button:hover {
-      background: #0f0;
+      background: lime;
     }
   </style>
 </head>
@@ -92,18 +86,40 @@
 </nav>
 
 <main>
-  <!-- Wszystkie sekcje z grami (jak poprzednio) -->
-  <!-- ... (sekcje z opisami gier: GTA, NFS, Max Payne, etc.) -->
+  <section id="gta-sa" class="active">
+    <h2>GTA San Andreas</h2>
+    <p>Grand Theft Auto: San Andreas to gra akcji z otwartym światem, w której gracz wciela się w Carla "CJ" Johnsona, powracającego do Los Santos po pięciu latach nieobecności. Akcja toczy się w 1992 roku, w fikcyjnym stanie San Andreas, wzorowanym na Kalifornii i Nevadzie. Głównym wątkiem fabularnym jest walka CJ-a o odzyskanie kontroli nad miastem i rodziną, a także odkrycie prawdy o śmierci matki.</p>
+    <h3>Fabuła</h3>
+    <p>Carl "CJ" Johnson wraca do Los Santos po informacji o śmierci matki. Dowiaduje się, że jego rodzina i gang Grove Street Families są w rozsypce, a do tego zostaje wrobiony w morderstwo przez skorumpowanych gliniarzy z oddziału C.R.A.S.H. Musi stawić czoła gangom, korupcji i walczyć o przetrwanie w świecie pełnym przemocy i niebezpieczeństw.</p>
+    <h3>Cechy gry</h3>
+    <ul>
+      <li>Otwarty świat: Trzy duże miasta i tereny wiejskie.</li>
+      <li>Personalizacja CJ-a.</li>
+      <li>Misje, wyścigi, napady i wiele innych aktywności.</li>
+      <li>Decyzje wpływają na fabułę.</li>
+      <li>Klimat lat 90., muzyka i styl.</li>
+    </ul>
+  </section>
+
+  <!-- Reszta gier (skrócone opisy dla przykładu) -->
+  <section id="gta-vc"><h2>GTA Vice City</h2><p>Akcja dzieje się w latach 80. w słonecznym Vice City. Gracz wciela się w Tommy'ego Vercetti...</p></section>
+  <section id="gta-3"><h2>GTA 3</h2><p>Osadzona w mrocznym Liberty City, gracz wciela się w milczącego Claude’a, który szuka zemsty...</p></section>
+  <section id="nfs-u2"><h2>Need for Speed: Underground 2</h2><p>Wyścigi uliczne, tuning aut i otwarty świat Bayview...</p></section>
+  <section id="max-payne"><h2>Max Payne</h2><p>Noir, zemsta i bullet time. Max szuka sprawiedliwości w brutalnym świecie...</p></section>
+  <section id="minecraft"><h2>Minecraft</h2><p>Buduj, przetrwaj i eksploruj nieskończony świat złożony z bloków...</p></section>
+  <section id="sh2"><h2>Silent Hill 2</h2><p>Psychologiczny horror, tajemnica i groza w mglistym miasteczku...</p></section>
+  <section id="tony-hawk"><h2>Tony Hawk's Pro Skater 2</h2><p>Legendarny skateboarding, triki i punkowa muzyka...</p></section>
+  <section id="castlevania"><h2>Castlevania: Symphony of the Night</h2><p>Platformówka z elementami RPG, gotycki klimat i eksploracja zamku...</p></section>
+  <section id="re4"><h2>Resident Evil 4</h2><p>Leon S. Kennedy ratuje córkę prezydenta i walczy z przerażającymi stworami w Hiszpanii...</p></section>
 </main>
 
 <footer>
-  &copy; 2025 RetroReplay.pl — Retro Gaming
-  <br />
+  &copy; 2025 RetroReplay.pl — Retro Gaming<br>
   <button id="music-control">▶ Włącz muzykę</button>
 </footer>
 
 <audio id="bg-music" loop>
-  <source src="https://cdn.pixabay.com/audio/2022/11/03/audio_3ae8474c33.mp3" type="audio/mpeg" />
+  <source src="https://cdn.pixabay.com/audio/2022/11/03/audio_3ae8474c33.mp3" type="audio/mpeg">
 </audio>
 
 <script>
@@ -116,16 +132,9 @@
     link.addEventListener('click', () => {
       const target = link.getAttribute('data-target');
       links.forEach(l => l.classList.remove('active'));
-      sections.forEach(s => {
-        s.classList.remove('active');
-        s.style.opacity = 0;
-      });
+      sections.forEach(s => s.classList.remove('active'));
+      document.getElementById(target).classList.add('active');
       link.classList.add('active');
-      const targetSection = document.getElementById(target);
-      targetSection.classList.add('active');
-      setTimeout(() => {
-        targetSection.style.opacity = 1;
-      }, 50);
     });
   });
 
@@ -142,3 +151,11 @@
 
 </body>
 </html>
+"""
+
+# Zapisujemy plik HTML do pobrania
+file_path = "/mnt/data/RetroReplay.html"
+with open(file_path, "w", encoding="utf-8") as f:
+    f.write(retro_replay_html)
+
+file_path
