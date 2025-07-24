@@ -2,221 +2,422 @@
 <html lang="pl">
 <head>
 <meta charset="UTF-8" />
-<title>RetroReplay.pl</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>RetroReplay</title>
 <style>
+  /* Tło siatka zielono-czarna */
   body {
-    background-color: black;
-    color: #00ff00;
-    font-family: monospace;
     margin: 0;
-    padding: 0;
+    font-family: 'Courier New', Courier, monospace;
+    background:
+      linear-gradient(90deg, rgba(0,255,0,0.1) 1px, transparent 1px),
+      linear-gradient(rgba(0,255,0,0.1) 1px, transparent 1px);
+    background-size: 40px 40px;
+    background-color: #0b3d0b;
+    color: #ddd;
   }
+
   header {
-    background-color: #003300;
-    padding: 20px;
-    font-size: 28px;
     text-align: center;
-    color: #00ff00;
-    border-bottom: 2px solid #00ff00;
+    font-size: 3rem;
+    font-weight: bold;
+    color: #b25cd9;
+    padding: 25px 0;
+    text-shadow: 0 0 10px #b25cd9;
+    user-select: none;
   }
+
   nav {
-    background-color: #001a00;
-    padding: 10px;
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    border-bottom: 1px solid #00ff00;
+    background: rgba(50,0,50,0.85);
+    border-bottom: 3px solid #b25cd9;
   }
-  nav a {
-    color: #00ff00;
-    text-decoration: none;
-    margin: 5px 10px;
-    padding: 5px 10px;
-    border: 1px solid #00ff00;
+
+  nav button {
+    background: transparent;
+    border: none;
+    color: #b25cd9;
+    font-weight: bold;
+    font-size: 1.1rem;
+    padding: 15px 30px;
     cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    border-bottom: 4px solid transparent;
   }
-  nav a:hover, nav a.active {
-    background-color: #00ff00;
-    color: black;
+
+  nav button:hover,
+  nav button.active {
+    background-color: #b25cd9;
+    color: #0b3d0b;
+    border-bottom-color: #60ff60;
+    box-shadow: 0 0 15px #a770ff;
   }
+
+  main {
+    max-width: 900px;
+    margin: 30px auto;
+    background: rgba(30,0,30,0.8);
+    padding: 25px 35px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px #5c27aa;
+    min-height: 450px;
+  }
+
   section {
     display: none;
-    padding: 20px;
   }
+
   section.active {
     display: block;
   }
-  footer {
-    text-align: center;
-    padding: 10px;
-    background-color: #001a00;
-    color: #00ff00;
-    font-size: 14px;
+
+  h2 {
+    color: #d3a9ff;
+    margin-top: 0;
+    text-shadow: 0 0 6px #a073d7;
+  }
+
+  ul {
+    list-style-type: square;
+    padding-left: 20px;
+  }
+
+  ul li {
+    margin-bottom: 8px;
+  }
+
+  /* Lista gier na zakładce Gry */
+  #games-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 15px;
+  }
+
+  .game-item {
+    background: #2d004d;
+    border: 2px solid #8e3eff;
+    border-radius: 8px;
+    padding: 10px 15px;
+    cursor: pointer;
+    flex: 1 1 40%;
+    max-width: 45%;
+    box-shadow: 0 0 10px #8e3eff;
+    transition: background-color 0.3s ease;
+    user-select: none;
+  }
+
+  .game-item:hover {
+    background-color: #7d3eff;
+    color: #0b3d0b;
+  }
+
+  /* Modal (okno popup) */
+  #gameModal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-width: 700px;
+    background: #25004d;
+    border: 3px solid #b25cd9;
+    border-radius: 12px;
+    box-shadow: 0 0 40px #b25cd9;
+    color: #ddd;
+  }
+
+  #gameModal header {
+    background: #8e3eff;
+    padding: 12px 18px;
+    font-weight: bold;
+    font-size: 1.4rem;
+    color: #0b3d0b;
+    border-top-left-radius: 9px;
+    border-top-right-radius: 9px;
+    user-select: none;
+    position: relative;
+  }
+
+  #gameModal .content {
+    padding: 20px 25px;
+    max-height: 350px;
+    overflow-y: auto;
+    line-height: 1.4;
+    font-size: 1rem;
+  }
+
+  #gameModal .close-btn {
+    background: transparent;
+    border: none;
+    color: #0b3d0b;
+    font-weight: bold;
+    font-size: 1.5rem;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    user-select: none;
+    transition: color 0.2s ease;
+  }
+
+  #gameModal .close-btn:hover {
+    color: #fff;
+  }
+
+  /* Scrollbar styl */
+  #gameModal .content::-webkit-scrollbar {
+    width: 8px;
+  }
+  #gameModal .content::-webkit-scrollbar-thumb {
+    background: #b25cd9;
+    border-radius: 10px;
   }
 </style>
 </head>
 <body>
 
-<header>🎮 RetroReplay.pl — Gry z PS2 i nie tylko 🎮</header>
+<header>RetroReplay</header>
 
 <nav>
-  <a data-target="gta-sa" class="active">GTA San Andreas</a>
-  <a data-target="gta-vc">GTA Vice City</a>
-  <a data-target="gta-3">GTA 3</a>
-  <a data-target="nfs-u2">NFS Underground 2</a>
-  <a data-target="max-payne">Max Payne</a>
-  <a data-target="minecraft">Minecraft</a>
-  <a data-target="sh2">Silent Hill 2</a>
-  <a data-target="tony-hawk">Tony Hawk 2</a>
-  <a data-target="castlevania">Castlevania</a>
-  <a data-target="re4">Resident Evil 4</a>
+  <button id="tabAbout" class="active">O mnie</button>
+  <button id="tabGear">Moje sprzęty</button>
+  <button id="tabGames">Gry</button>
 </nav>
 
 <main>
-  <section id="gta-sa" class="active">
-    <h2>GTA San Andreas</h2>
-    <p>Grand Theft Auto: San Andreas to gra akcji z otwartym światem, w której gracz wciela się w Carla "CJ" Johnsona, powracającego do Los Santos po pięciu latach nieobecności. Akcja toczy się w 1992 roku, w fikcyjnym stanie San Andreas, wzorowanym na Kalifornii i Nevadzie. Głównym wątkiem fabularnym jest walka CJ-a o odzyskanie kontroli nad miastem i rodziną, a także odkrycie prawdy o śmierci matki.</p>
-    <h3>Fabuła</h3>
-    <p>Carl "CJ" Johnson wraca do Los Santos po informacji o śmierci matki. Dowiaduje się, że jego rodzina i gang Grove Street Families są w rozsypce, a do tego zostaje wrobiony w morderstwo przez skorumpowanych gliniarzy z oddziału C.R.A.S.H. Musi stawić czoła gangom, korupcji i walczyć o przetrwanie w świecie pełnym przemocy i niebezpieczeństw.</p>
-    <h3>Cechy gry</h3>
+  <section id="about" class="active">
+    <h2>O mnie</h2>
+    <p>Jestem fanem retro, muzyki, gier oraz koszykówki. Lubię klimat dawnych lat i dobrą zabawę.</p>
+    <p><strong>Ulubiona gra:</strong> GTA San Andreas – najlepsza gra w historii.</p>
+    <p><strong>Ulubiony album Kanye West:</strong> Graduation</p>
+    <p><strong>Przeglądarka:</strong> Mozilla Firefox</p>
+  </section>
+
+  <section id="gear">
+    <h2>Moje sprzęty</h2>
     <ul>
-      <li>Otwarty świat: Trzy duże miasta i tereny wiejskie.</li>
-      <li>Personalizacja CJ-a.</li>
-      <li>Misje, wyścigi, napady i wiele innych aktywności.</li>
-      <li>Decyzje wpływają na fabułę.</li>
-      <li>Klimat lat 90., muzyka i styl.</li>
+      <li>Sony Ericsson K800i</li>
+      <li>Playstation 2</li>
+      <li>Playstation 3</li>
+      <li>PSP 1000</li>
+      <li>Nintendo DS</li>
+      <li>Playstation 5</li>
     </ul>
   </section>
 
-  <section id="gta-vc">
-    <h2>GTA Vice City</h2>
-    <p>Akcja dzieje się w latach 80. w słonecznym Vice City. Gracz wciela się w Tommy'ego Vercetti, który powraca do świata przestępczego, by odzyskać utracony majątek i władzę nad miastem.</p>
-    <h3>Fabuła</h3>
-    <p>Tommy Vercetti wychodzi z więzienia i zostaje wplątany w walkę o kontrolę nad Vice City. Musi pokonać rywali i skorumpowanych policjantów, by odzyskać swoje miejsce w przestępczym świecie.</p>
-    <h3>Cechy gry</h3>
-    <ul>
-      <li>Klimat lat 80., neonowe światła i muzyka.</li>
-      <li>Otwarte miasto pełne akcji i misji.</li>
-      <li>Możliwość prowadzenia pojazdów i walki z gangami.</li>
-      <li>Różnorodne bronie i pojazdy.</li>
-      <li>Fabuła pełna zwrotów akcji i humoru.</li>
-    </ul>
-  </section>
-
-  <section id="gta-3">
-    <h2>GTA 3</h2>
-    <p>Osadzona w mrocznym Liberty City, gracz wciela się w milczącego Claude’a, który szuka zemsty po zdradzie i próbie zamachu na jego życie.</p>
-    <h3>Fabuła</h3>
-    <p>Claude zostaje zdradzony podczas napadu i musi przeżyć, by pomścić się na swoich zdrajcach, w brutalnym i niebezpiecznym świecie przestępczym Liberty City.</p>
-    <h3>Cechy gry</h3>
-    <ul>
-      <li>Trójwymiarowe otwarte miasto.</li>
-      <li>Misje fabularne i poboczne.</li>
-      <li>Walka z gangami i policją.</li>
-      <li>Różnorodność pojazdów i broni.</li>
-      <li>Klimat początku 2000.</li>
-    </ul>
-  </section>
-
-  <section id="nfs-u2">
-    <h2>Need for Speed: Underground 2</h2>
-    <p>Wyścigi uliczne, tuning aut i otwarty świat Bayview. Gracz rywalizuje w podziemnych wyścigach, zdobywając sławę i pieniądze.</p>
-    <h3>Fabuła</h3>
-    <p>Gracz zaczyna karierę w wyścigach ulicznych i zdobywa reputację, rywalizując z najlepszymi kierowcami w mieście.</p>
-    <h3>Cechy gry</h3>
-    <ul>
-      <li>Otwarte miasto do eksploracji.</li>
-      <li>Ogromny tuning samochodów.</li>
-      <li>Różne tryby wyścigów.</li>
-      <li>Muzyka w klimacie street racing.</li>
-      <li>Dynamiczna rozgrywka.</li>
-    </ul>
-  </section>
-
-  <section id="max-payne">
-    <h2>Max Payne</h2>
-    <p>Noir, zemsta i bullet time. Max Payne szuka sprawiedliwości po zabójstwie rodziny.</p>
-    <h3>Fabuła</h3>
-    <p>Max Payne to były detektyw, który prowadzi prywatne śledztwo i walczy z przestępcami w brutalnym świecie pełnym korupcji i narkotyków.</p>
-    <h3>Cechy gry</h3>
-    <ul>
-      <li>Efekt bullet time (spowolnienie czasu).</li>
-      <li>Atmosfera noir i mroczna fabuła.</li>
-      <li>Strzelaniny i pościgi.</li>
-      <li>Wciągająca historia i postacie.</li>
-      <li>Stylizowana grafika komiksowa.</li>
-    </ul>
-  </section>
-
-  <section id="minecraft">
-    <h2>Minecraft</h2>
-    <p>Buduj, przetrwaj i eksploruj nieskończony świat złożony z bloków. Kreatywność i przygoda w jednym.</p>
-    <h3>Opis</h3>
-    <p>Gra sandbox, w której możesz tworzyć niemal wszystko, walczyć z potworami i współpracować z innymi graczami.</p>
-  </section>
-
-  <section id="sh2">
-    <h2>Silent Hill 2</h2>
-    <p>Psychologiczny horror, tajemnica i groza w mglistym miasteczku.</p>
-    <h3>Fabuła</h3>
-    <p>James Sunderland szuka swojej zmarłej żony w mrocznym i przerażającym Silent Hill.</p>
-    <h3>Cechy gry</h3>
-    <ul>
-      <li>Niesamowity klimat i muzyka.</li>
-      <li>Elementy psychologicznego horroru.</li>
-      <li>Zagadki i eksploracja.</li>
-      <li>Atmosfera napięcia i tajemnicy.</li>
-      <li>Jedna z najlepszych gier survival horror.</li>
-    </ul>
-  </section>
-
-  <section id="tony-hawk">
-    <h2>Tony Hawk's Pro Skater 2</h2>
-    <p>Legendarny skateboarding, triki i punkowa muzyka.</p>
-    <h3>Opis</h3>
-    <p>Gracz wykonuje niesamowite triki na deskorolce w różnych skateparkach.</p>
-  </section>
-
-  <section id="castlevania">
-    <h2>Castlevania: Symphony of the Night</h2>
-    <p>Platformówka z elementami RPG, gotycki klimat i eksploracja zamku Draculi.</p>
-    <h3>Opis</h3>
-    <p>Gracz jako Alucard przemierza ogromny zamek, walcząc z potworami i rozwijając umiejętności.</p>
-  </section>
-
-  <section id="re4">
-    <h2>Resident Evil 4</h2>
-    <p>Leon S. Kennedy ratuje córkę prezydenta przed tajemniczymi zombi i sektą.</p>
-    <h3>Fabuła</h3>
-    <p>Leon zostaje wysłany na misję ratunkową, która szybko zamienia się w walkę o życie z hordami potworów i sekretnymi organizacjami.</p>
-    <h3>Cechy gry</h3>
-    <ul>
-      <li>Intensywna akcja i strzelaniny.</li>
-      <li>Atmosfera horroru i napięcia.</li>
-      <li>Innowacyjny system celowania.</li>
-      <li>Eksploracja i rozwiązywanie zagadek.</li>
-      <li>Jedna z najlepszych gier survival horror.</li>
-    </ul>
+  <section id="games">
+    <h2>Gry</h2>
+    <p>Kliknij na grę, aby zobaczyć szczegóły.</p>
+    <div id="games-list">
+      <div class="game-item" data-game="gta_sa">GTA San Andreas</div>
+      <div class="game-item" data-game="gta_vc">GTA Vice City</div>
+      <div class="game-item" data-game="gta_3">GTA 3</div>
+      <div class="game-item" data-game="nfsu2">Need for Speed Underground 2</div>
+      <div class="game-item" data-game="max_payne">Max Payne</div>
+      <div class="game-item" data-game="silent_hill_2">Silent Hill 2</div>
+      <div class="game-item" data-game="tony_hawk_2">Tony Hawk's Pro Skater 2</div>
+      <div class="game-item" data-game="resident_evil_4">Resident Evil 4</div>
+    </div>
   </section>
 </main>
 
-<footer>© 2025 RetroReplay.pl | Wszystkie prawa zastrzeżone</footer>
+<!-- Modal na gry -->
+<div id="gameModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+  <header id="modalTitle">
+    <button class="close-btn" aria-label="Zamknij okno">&times;</button>
+    <span id="modalGameTitle">Tytuł gry</span>
+  </header>
+  <div class="content" id="modalGameContent">
+    Opis gry...
+  </div>
+</div>
 
 <script>
-  const links = document.querySelectorAll('nav a');
-  const sections = document.querySelectorAll('main section');
+  // Funkcja odtwarzająca dźwięk kliknięcia
+  function playSoundClick() {
+    // prosty dźwięk "click" generowany programowo
+    const ctx = new AudioContext();
+    const osc = ctx.createOscillator();
+    const gainNode = ctx.createGain();
 
-  links.forEach(link => {
-    link.addEventListener('click', () => {
-      // usuń active z linków i sekcji
-      links.forEach(l => l.classList.remove('active'));
-      sections.forEach(s => s.classList.remove('active'));
+    osc.type = 'square';
+    osc.frequency.setValueAtTime(1000, ctx.currentTime); // 1000Hz
+    gainNode.gain.setValueAtTime(0.1, ctx.currentTime); // głośność
 
-      // dodaj active do klikniętego linku i odpowiadającej sekcji
-      link.classList.add('active');
-      const target = link.getAttribute('data-target');
-      document.getElementById(target).classList.add('active');
+    osc.connect(gainNode);
+    gainNode.connect(ctx.destination);
+
+    osc.start();
+    osc.stop(ctx.currentTime + 0.05); // bardzo krótki dźwięk
+
+    osc.onended = () => ctx.close();
+  }
+
+  // Obsługa przełączania zakładek z dźwiękiem
+  const buttons = document.querySelectorAll('nav button');
+  const sections = {
+    tabAbout: document.getElementById('about'),
+    tabGear: document.getElementById('gear'),
+    tabGames: document.getElementById('games'),
+  };
+
+  buttons.forEach(button => {
+    button.addEventListener('click', () => {
+      playSoundClick();
+
+      buttons.forEach(btn => btn.classList.remove('active'));
+      button.classList.add('active');
+
+      Object.values(sections).forEach(sec => sec.classList.remove('active'));
+      sections[button.id].classList.add('active');
     });
+  });
+
+  // Dane gier
+  const gamesData = {
+    gta_sa: {
+      title: "GTA San Andreas",
+      content: `<strong>Grand Theft Auto: San Andreas</strong> to gra akcji z otwartym światem, w której gracz wciela się w Carla "CJ" Johnsona, powracającego do Los Santos po pięciu latach nieobecności. Akcja toczy się w 1992 roku, w fikcyjnym stanie San Andreas, wzorowanym na Kalifornii i Nevadzie.<br><br>
+      <strong>Fabuła:</strong><br>
+      Carl "CJ" Johnson wraca do Los Santos po informacji o śmierci matki. Dowiaduje się, że jego rodzina i gang Grove Street Families są w rozsypce, a do tego zostaje wrobiony w morderstwo przez skorumpowanych gliniarzy z oddziału C.R.A.S.H. Musi stawić czoła gangom, korupcji i walczyć o przetrwanie.<br><br>
+      <strong>Cechy gry:</strong><br>
+      - Otwarty świat: trzy duże miasta i tereny wiejskie.<br>
+      - Personalizacja CJ-a.<br>
+      - Misje, wyścigi, napady i wiele innych aktywności.<br>
+      - Decyzje wpływają na fabułę.<br>
+      - Klimat lat 90., muzyka i styl.`
+    },
+    gta_vc: {
+      title: "GTA Vice City",
+      content: `<strong>Akcja dzieje się w latach 80. w słonecznym Vice City.</strong> Gracz wciela się w Tommy'ego Vercetti, który powraca do świata przestępczego, by odzyskać utracony majątek i władzę nad miastem.<br><br>
+      <strong>Fabuła:</strong><br>
+      Tommy Vercetti wychodzi z więzienia i zostaje wplątany w walkę o kontrolę nad Vice City. Musi pokonać rywali i skorumpowanych policjantów.<br><br>
+      <strong>Cechy gry:</strong><br>
+      - Klimat lat 80., neonowe światła i muzyka.<br>
+      - Otwarte miasto pełne akcji i misji.<br>
+      - Możliwość prowadzenia pojazdów i walki z gangami.<br>
+      - Różnorodne bronie i pojazdy.<br>
+      - Fabuła pełna zwrotów akcji i humoru.`
+    },
+    gta_3: {
+      title: "GTA 3",
+      content: `<strong>Osadzona w mrocznym Liberty City,</strong> gracz wciela się w milczącego Claude'a, który szuka zemsty po zdradzie i próbie zamachu na jego życie.<br><br>
+      <strong>Fabuła:</strong><br>
+      Claude zostaje zdradzony podczas napadu i musi przeżyć, by pomścić się na swoich zdrajcach.<br><br>
+      <strong>Cechy gry:</strong><br>
+      - Trójwymiarowe otwarte miasto.<br>
+      - Misje fabularne i poboczne.<br>
+      - Walka z gangami i policją.<br>
+      - Różnorodność pojazdów i broni.<br>
+      - Klimat początku 2000.`
+    },
+    nfsu2: {
+      title: "Need for Speed Underground 2",
+      content: `<strong>Wyścigi uliczne, tuning aut i otwarty świat Bayview.</strong> Gracz rywalizuje w podziemnych wyścigach, zdobywając sławę i pieniądze.<br><br>
+      <strong>Fabuła:</strong><br>
+      Gracz zaczyna karierę w wyścigach ulicznych i zdobywa reputację.<br><br>
+      <strong>Cechy gry:</strong><br>
+      - Otwarte miasto do eksploracji.<br>
+      - Szeroki wybór samochodów i modyfikacji.<br>
+      - Różne tryby wyścigów.<br>
+      - Realistyczny tuning i fizyka.<br>
+      - Klimat kultury street racingu lat 2000.`
+    },
+    max_payne: {
+      title: "Max Payne",
+      content: `<strong>Mroczna historia detektywa Maxa Payne’a,</strong> który szuka zemsty za zamordowanie swojej rodziny.<br><br>
+      <strong>Fabuła:</strong><br>
+      Max Payne jest policjantem, który traci rodzinę w brutalnym napadzie i rozpoczyna samotną walkę z przestępczym światem.<br><br>
+      <strong>Cechy gry:</strong><br>
+      - Filmowa narracja i klimat noir.<br>
+      - Mechanika "bullet time".<br>
+      - Strzelaniny i akcja w zwolnionym tempie.<br>
+      - Mroczne lokacje i fabuła.<br>
+      - Intense i emocjonująca rozgrywka.`
+    },
+    silent_hill_2: {
+      title: "Silent Hill 2",
+      content: `<strong>Klimatyczny horror psychologiczny,</strong> w którym gracz wciela się w Jamesa Sunderlanda szukającego swojej zmarłej żony.<br><br>
+      <strong>Fabuła:</strong><br>
+      James otrzymuje list od zmarłej żony i wyrusza do tajemniczego miasta Silent Hill.<br><br>
+      <strong>Cechy gry:</strong><br>
+      - Mroczna, psychologiczna atmosfera.<br>
+      - Zagadki i eksploracja.<br>
+      - Przerażające potwory i fabuła z wieloma warstwami.<br>
+      - Wysoki poziom immersji.<br>
+      - Kultowa gra horror.`
+    },
+    tony_hawk_2: {
+      title: "Tony Hawk's Pro Skater 2",
+      content: `<strong>Kultowa gra deskorolkowa,</strong> oferująca dużą swobodę i realistyczne triki.<br><br>
+      <strong>Fabuła:</strong><br>
+      Brak typowej fabuły, główny cel to wykonywanie trików i zdobywanie punktów.<br><br>
+      <strong>Cechy gry:</strong><br>
+      - Różnorodne plansze i wyzwania.<br>
+      - Realistyczna fizyka trików.<br>
+      - Tryb kariery i multiplayer.<br>
+      - Kultowa ścieżka dźwiękowa.<br>
+      - Emocjonująca rozgrywka.`
+    },
+    resident_evil_4: {
+      title: "Resident Evil 4",
+      content: `<strong>Survival horror z widokiem zza pleców,</strong> gdzie gracz wciela się w Leona S. Kennedy’ego próbującego uratować córkę prezydenta.<br><br>
+      <strong>Fabuła:</strong><br>
+      Leon trafia do hiszpańskiej wioski, gdzie stawia czoła zmutowanym mieszkańcom.<br><br>
+      <strong>Cechy gry:</strong><br>
+      - Dynamiczna akcja i strzelanina.<br>
+      - Klimat napięcia i zagrożenia.<br>
+      - Zagadki i eksploracja.<br>
+      - Nowatorski system celowania.<br>
+      - Kultowa gra akcji i horroru.`
+    },
+  };
+
+  // Modal i jego elementy
+  const modal = document.getElementById('gameModal');
+  const modalTitle = document.getElementById('modalGameTitle');
+  const modalContent = document.getElementById('modalGameContent');
+  const modalCloseBtn = modal.querySelector('.close-btn');
+
+  // Obsługa kliknięć w gry
+  document.querySelectorAll('.game-item').forEach(gameEl => {
+    gameEl.addEventListener('click', () => {
+      playSoundClick();
+
+      const gameKey = gameEl.getAttribute('data-game');
+      const game = gamesData[gameKey];
+      if (game) {
+        modalTitle.innerHTML = game.title;
+        modalContent.innerHTML = game.content;
+        modal.style.display = 'block';
+      }
+    });
+  });
+
+  // Zamknięcie modala
+  modalCloseBtn.addEventListener('click', () => {
+    playSoundClick();
+    modal.style.display = 'none';
+  });
+
+  // Zamknięcie modala kliknięciem poza okno
+  window.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      playSoundClick();
+      modal.style.display = 'none';
+    }
+  });
+
+  // Zamknięcie modala klawiszem Escape
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal.style.display === 'block') {
+      playSoundClick();
+      modal.style.display = 'none';
+    }
   });
 </script>
 
